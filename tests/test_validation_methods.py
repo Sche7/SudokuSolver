@@ -24,7 +24,7 @@ def test_empty_board_is_not_complete(sudoku_solver):
     """
     empty_board = np.zeros((9, 9), dtype=int)
 
-    assert not sudoku_solver.is_complete(empty_board)
+    assert sudoku_solver.is_complete(empty_board) is False
 
 
 def test_complete_board_is_valid(sudoku_solver):
@@ -51,6 +51,54 @@ def test_complete_board_is_valid(sudoku_solver):
     assert sudoku_solver.is_valid(complete_board)
 
 
+def test_complete_board_invalid_row(sudoku_solver):
+    """
+    The complete board in this test is incorrectly solved.
+    See that complete board is invalid on first row.
+    """
+    complete_board = np.array([
+        [5, 3, 4, 6, 7, 8, 9, 1, 5],
+        [6, 7, 2, 1, 9, 5, 3, 4, 8],
+        [1, 9, 8, 3, 4, 2, 5, 6, 7],
+        [8, 5, 9, 7, 6, 1, 4, 2, 3],
+        [4, 2, 6, 8, 5, 3, 7, 9, 1],
+        [7, 1, 3, 9, 2, 4, 8, 5, 6],
+        [9, 6, 1, 5, 3, 7, 2, 8, 4],
+        [2, 8, 7, 4, 1, 9, 6, 3, 5],
+        [3, 4, 5, 2, 8, 6, 1, 7, 9]
+    ])
+
+    # See that board is indeed complete
+    assert sudoku_solver.is_complete(complete_board)
+
+    # See that board is valid
+    assert sudoku_solver.is_valid(complete_board) is False
+
+
+def test_complete_board_invalid_col(sudoku_solver):
+    """
+    The complete board in this test is incorrectly solved.
+    See that complete board is invalid on last column.
+    """
+    complete_board = np.array([
+        [5, 3, 4, 6, 7, 8, 9, 1, 2],
+        [6, 7, 2, 1, 9, 5, 3, 4, 8],
+        [1, 9, 8, 3, 4, 2, 5, 6, 7],
+        [8, 5, 9, 7, 6, 1, 4, 2, 3],
+        [4, 2, 6, 8, 5, 3, 7, 9, 1],
+        [7, 1, 3, 9, 2, 4, 8, 5, 6],
+        [9, 6, 1, 5, 3, 7, 2, 8, 2],
+        [2, 8, 7, 4, 1, 9, 6, 3, 5],
+        [3, 4, 5, 2, 8, 6, 1, 7, 9]
+    ])
+
+    # See that board is indeed complete
+    assert sudoku_solver.is_complete(complete_board)
+
+    # See that board is valid
+    assert sudoku_solver.is_valid(complete_board) is False
+
+
 def test_complete_board_is_invalid(sudoku_solver):
     """
     The complete board in this test is incorrectly solved.
@@ -72,7 +120,7 @@ def test_complete_board_is_invalid(sudoku_solver):
     assert sudoku_solver.is_complete(complete_board)
 
     # See that board is invalid
-    assert not sudoku_solver.is_valid(complete_board)
+    assert sudoku_solver.is_valid(complete_board) is False
 
 
 def test_incomplete_board_is_valid(sudoku_solver):
@@ -115,7 +163,7 @@ def test_incomplete_board_is_invalid(sudoku_solver):
     ])
 
     # See that board is indeed complete
-    assert not sudoku_solver.is_complete(incomplete_board)
+    assert sudoku_solver.is_complete(incomplete_board) is False
 
     # See that board is invalid
-    assert not sudoku_solver.is_valid(incomplete_board)
+    assert sudoku_solver.is_valid(incomplete_board) is False
