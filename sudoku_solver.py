@@ -18,7 +18,15 @@ class SudokuSolver:
     def has_repeated_number(self, x: Union[list, NDArray]):
         return len(set(x)) != len(x)
 
-    def validate_rows(self, board):
+    def rows_are_valid(self, board) -> bool:
+        """
+        Method for checking rows are valid. More specifically,
+        This method checks whether each row has a repeated number.
+
+        returns
+            True, if all rows don't have repeated numbers
+            False, otherwise
+        """
         nrow, _ = board.shape
         for i in range(nrow):
             row = self._filter_off_zeros(board[i, :])
@@ -26,7 +34,15 @@ class SudokuSolver:
                 return False
         return True
 
-    def validate_columns(self, board):
+    def columns_are_valid(self, board) -> bool:
+        """
+        Method for checking columns are valid. More specifically,
+        This method checks whether each columns has a repeated number.
+
+        returns
+            True, if all columns don't have repeated numbers
+            False, otherwise
+        """
         _, ncol = board.shape
         for i in range(ncol):
             col = self._filter_off_zeros(board[:, i])
@@ -34,7 +50,15 @@ class SudokuSolver:
                 return False
         return True
 
-    def validate_subgrids(self, board):
+    def subgrids_are_valid(self, board) -> bool:
+        """
+        Method for checking subgrids are valid. More specifically,
+        This method checks whether each subgrid has a repeated number.
+
+        returns
+            True, if all subgrids don't have repeated numbers
+            False, otherwise
+        """
         # TODO: Improve this
         indices = [0, 3, 6]
         for i in indices:
@@ -47,9 +71,9 @@ class SudokuSolver:
 
     def is_valid(self, board):
         return (
-            self.validate_rows(board) and
-            self.validate_columns(board) and
-            self.validate_subgrids(board)
+            self.rows_are_valid(board) and
+            self.columns_are_valid(board) and
+            self.subgrids_are_valid(board)
         )
 
     def is_complete(self, board):

@@ -72,10 +72,10 @@ def test_complete_board_invalid_row(sudoku_solver):
     assert sudoku_solver.is_complete(board) is False
 
     # See that board is valid column-wise
-    assert sudoku_solver.validate_columns(board)
+    assert sudoku_solver.columns_are_valid(board)
 
     # See that board is invalid row-wise
-    assert sudoku_solver.validate_rows(board) is False
+    assert sudoku_solver.rows_are_valid(board) is False
 
 
 def test_complete_board_invalid_col(sudoku_solver):
@@ -99,10 +99,10 @@ def test_complete_board_invalid_col(sudoku_solver):
     assert sudoku_solver.is_complete(board) is False
 
     # See that board is valid row-wise
-    assert sudoku_solver.validate_rows(board)
+    assert sudoku_solver.rows_are_valid(board)
 
     # See that board is invalid column-wise
-    assert sudoku_solver.validate_columns(board) is False
+    assert sudoku_solver.columns_are_valid(board) is False
 
 
 def test_invalid_subgrid(sudoku_solver):
@@ -126,13 +126,13 @@ def test_invalid_subgrid(sudoku_solver):
     assert sudoku_solver.is_complete(board) is False
 
     # See that board is valid row-wise
-    assert sudoku_solver.validate_rows(board)
+    assert sudoku_solver.rows_are_valid(board)
 
     # See that board is valid column-wise
-    assert sudoku_solver.validate_columns(board)
+    assert sudoku_solver.columns_are_valid(board)
 
     # See that board is invalid subgrid-wise
-    assert sudoku_solver.validate_subgrids(board) is False
+    assert sudoku_solver.subgrids_are_valid(board) is False
 
 
 def test_complete_board_is_invalid(sudoku_solver):
