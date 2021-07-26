@@ -1,32 +1,28 @@
-from typing import Union
+from typing import Union, Optional
 from nptyping import NDArray
 import numpy as np
 import pandas as pd
 
 
 class SudokuSolver:
-    def __init__(self, board: NDArray):
-        self.tree_df, self.tree_dict = self.generate_tree()
-        self.original_board = board.astype(int)
-
-    def generate_tree(self):
-        coordinates = [(i, j) for i in range(9) for j in range(9)]
-
-        tree_df = pd.DataFrame(
+    coordinates = [(i, j) for i in range(9) for j in range(9)]
+    tree_df = pd.DataFrame(
             {'parent': coordinates[:-1], 'child': coordinates[1:]}
         )
-
-        tree_dict = {
+    tree_dict = {
             index['parent']: index['child']
             for index in tree_df.to_dict(orient='records')
         }
-        return tree_df, tree_dict
+
+    def __init__(self, board: NDArray, input_file: Optional[str] = None):
+        self.original_board = board.astype(int)
+        self.input_file = input_file
 
     def get_child(self, node):
         """
         Retrieve child-node. If no child-node exists, returns input-node.
         """
-        return self.tree_dict.get(node, node)
+        return SudokuSolver.tree_dict.get(node, node)
 
     def _filter_off_zeros(self, x: list):
         """
@@ -131,6 +127,10 @@ class SudokuSolver:
         return self.is_valid(copied_board)
 
     def print_board(self, board: NDArray) -> None:
+        """
+        A simple method for printing Sudoku board to the terminal
+        in a prettier format
+        """
         flipped_board = np.flipud(board)
         grid_size = len(flipped_board)
 
@@ -160,14 +160,12 @@ class SudokuSolver:
         node: tuple = (0, 0)
     ) -> Union[None, NDArray]:
         """
-        Run-method for solving a sudoku board.
+        Method for solving a sudoku board.
 
         Returns
             An np.array, if solution is found
             None, if no solution is found
         """
-        self.print_board(board)
-
         # Return board if solution has been found
         if self.is_complete(board) and self.is_valid(board):
             return board
@@ -203,7 +201,42 @@ class SudokuSolver:
                 board[node] = 0
         return None
 
+    @classmethod
+    def from_txt(cls, input_file: str):
+        """
+        Classmethod for initializing class given input filepath instead.
+        Example:
+        >>> solver = SudokuSolver.from_txt('tests/board_1.txt')
+        >>> solver.run()
+        """
+        output = []
+        with open(input_file) as f:
+            for line in f:
+                output.append(line.strip('\n').split(' '))
+
+        board = np.array(output, dtype=int)
+        return cls(board=board, input_file=input_file)
+
     def run(self):
+        """
+        Method for running the SudokuSolver.
+
+        Example:
+        >>> board = np.array(
+        >>>     [[0, 0, 9, 0, 0, 0, 4, 6, 3],
+        >>>     [0, 0, 6, 3, 4, 0, 5, 2, 9],
+        >>>     [2, 3, 4, 5, 6, 9, 7, 1, 8],
+        >>>     [0, 6, 7, 0, 0, 0, 3, 4, 1],
+        >>>     [0, 4, 0, 0, 3, 0, 2, 9, 5],
+        >>>     [0, 2, 0, 0, 0, 0, 6, 8, 0],
+        >>>     [0, 0, 2, 0, 0, 1, 9, 3, 4],
+        >>>     [4, 9, 3, 8, 2, 5, 1, 7, 6],
+        >>>     [0, 7, 0, 4, 9, 3, 8, 5, 2]], dtype=int)
+        >>> solver = SudokuSolver(board=board)
+        >>> solver.run()
+        """
+        input_file = f' for {self.input_file}' if self.input_file else ''
+        print(f'Computing solution{input_file}...')
         result = self.solve_sudoku(board=self.original_board)
 
         if result is not None:
