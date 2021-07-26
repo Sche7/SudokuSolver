@@ -18,7 +18,7 @@ and<br>
 
 To see that everything has been installed correctly, run:<br>
 <code>pytest tests/</code><br>
-You should see that all tests should passes.
+You should see that all tests passes.
 
 ### Running SudokuSolver from terminal
 In the terminal, simply execute the following command:<br>
