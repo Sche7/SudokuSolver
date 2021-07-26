@@ -18,22 +18,22 @@ class SudokuSolver:
         self.original_board = board.astype(int)
         self.input_file = input_file
 
-    def get_child(self, node):
+    def get_child(self, node: tuple):
         """
         Retrieve child-node. If no child-node exists, returns input-node.
         """
         return SudokuSolver.tree_dict.get(node, node)
 
-    def _filter_off_zeros(self, x: list):
+    def _filter_off_zeros(self, x: list) -> list:
         """
         Helper method to filter off zeros in list
         """
         return [i for i in x if i != 0]
 
-    def has_repeated_number(self, x: Union[list, NDArray]):
+    def has_repeated_number(self, x: Union[list, NDArray]) -> bool:
         return len(set(x)) != len(x)
 
-    def rows_are_valid(self, board) -> bool:
+    def rows_are_valid(self, board: NDArray) -> bool:
         """
         Method for checking rows are valid. More specifically,
         This method checks whether each row has a repeated number.
@@ -52,7 +52,7 @@ class SudokuSolver:
                 return False
         return True
 
-    def columns_are_valid(self, board) -> bool:
+    def columns_are_valid(self, board: NDArray) -> bool:
         """
         Method for checking columns are valid. More specifically,
         This method checks whether each columns has a repeated number.
@@ -71,7 +71,7 @@ class SudokuSolver:
                 return False
         return True
 
-    def subgrids_are_valid(self, board) -> bool:
+    def subgrids_are_valid(self, board: NDArray) -> bool:
         """
         Method for checking subgrids are valid. More specifically,
         This method checks whether each subgrid has a repeated number.
@@ -93,14 +93,14 @@ class SudokuSolver:
                     return False
         return True
 
-    def is_valid(self, board):
+    def is_valid(self, board: NDArray) -> bool:
         return (
             self.rows_are_valid(board) and
             self.columns_are_valid(board) and
             self.subgrids_are_valid(board)
         )
 
-    def is_complete(self, board):
+    def is_complete(self, board) -> bool:
         """
         Method for checking that the board is complete.
 
@@ -114,7 +114,12 @@ class SudokuSolver:
 
         return 0 not in board
 
-    def value_is_valid(self, board, node, node_value) -> bool:
+    def value_is_valid(
+        self,
+        board: NDArray,
+        node: tuple,
+        node_value: int
+    ) -> bool:
         """
         Method to 'foresee' whether node_value will result in
         a valid board or not.
@@ -166,13 +171,14 @@ class SudokuSolver:
             An np.array, if solution is found
             None, if no solution is found
         """
-        # Return board if solution has been found
+        # Return board if board is complete
         if self.is_complete(board):
             return board
 
         # if node is already filled (one of the nodes starting with a value),
         # skip directly to next child node
-        # else fill current cell with a value before going to next child node
+        # else fill current cell with a valid value
+        # before going to next child node
         if board[node] != 0:
             return self.solve_sudoku(
                     board=board,
@@ -218,7 +224,7 @@ class SudokuSolver:
         board = np.array(output, dtype=int)
         return cls(board=board, input_file=input_file)
 
-    def run(self):
+    def run(self) -> None:
         """
         Method for running the SudokuSolver.
 
