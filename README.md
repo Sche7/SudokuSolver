@@ -39,8 +39,8 @@ It is also possible to execute <code>solve</code> iteratively over multiple inpu
 <code>solve *<strong>input_filepath_1</strong>* *<strong>input_filepath_2</strong>* *<strong>input_filepath_3</strong>* ... </code><br>
 
 ### Running SudokuSolver from Python-interactives
+#### Example 1
 In any Python interactives, simply execute the following command:<br>
-Example:<br>
 ```python
 board = np.array(
     [[0, 0, 9, 0, 0, 0, 4, 6, 3],
@@ -53,5 +53,11 @@ board = np.array(
     [4, 9, 3, 8, 2, 5, 1, 7, 6],
     [0, 7, 0, 4, 9, 3, 8, 5, 2]], dtype=int)
 solver = SudokuSolver(board=board)
+solver.run()
+```
+#### Example 2
+If it is desired to load the Sudoku board from a .txt-file use:<br>
+```python
+solver = SudokuSolver.from_txt('tests/board_1.txt')
 solver.run()
 ```
