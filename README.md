@@ -21,7 +21,7 @@ To see that everything has been installed correctly, run:<br>
 You should see that all tests passes.
 
 ### Running SudokuSolver from terminal
-In the terminal, simply use the command <code>solve</code> followed by an input filepath. Note that the input file must have .txt format with space as seperator. For example: <br>
+In the terminal, simply use the command <code>solve</code> followed by an input filepath. Note that the input file must have .txt format with whitespace as separator. For example: <br>
 ```
 0 0 9 0 0 0 4 6 3
 0 0 6 3 4 0 5 2 9
