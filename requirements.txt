@@ -2,3 +2,4 @@ numpy
 ipython
 pytest
 nptyping
+pandas
