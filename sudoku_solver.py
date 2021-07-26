@@ -167,12 +167,12 @@ class SudokuSolver:
             None, if no solution is found
         """
         # Return board if solution has been found
-        if self.is_complete(board) and self.is_valid(board):
+        if self.is_complete(board):
             return board
 
         # if node is already filled (one of the nodes starting with a value),
-        # skip to child node
-        # else fill cell with values
+        # skip directly to next child node
+        # else fill current cell with a value before going to next child node
         if board[node] != 0:
             return self.solve_sudoku(
                     board=board,
@@ -181,7 +181,7 @@ class SudokuSolver:
         else:
             for i in range(1, 10):
                 # if value 'i' is valid then proceed with value 'i'
-                # else skip to next iteration
+                # else try next incremented value
                 if self.value_is_valid(
                     board=board,
                     node=node,
@@ -191,11 +191,12 @@ class SudokuSolver:
 
                     # Proceed further with valid value
                     # and return board if solution is found
-                    if (self.solve_sudoku(
-                                board=board,
-                                node=self.get_child(node)
-                            ) is not None):
-                        return board
+                    result = self.solve_sudoku(
+                        board=board,
+                        node=self.get_child(node)
+                    )
+                    if result is not None:
+                        return result
 
                 # reset cell to 0 for next increment of 'i'
                 board[node] = 0

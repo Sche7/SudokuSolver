@@ -49,7 +49,7 @@ def test_complete_board_is_valid():
 def test_complete_board_invalid_row():
     """
     The board in this test is incorrectly solved.
-    See that rge board is invalid on first row.
+    See that the board is invalid on first row.
     """
     board = np.array([
         [5, 3, 4, 6, 7, 8, 9, 1, 9],

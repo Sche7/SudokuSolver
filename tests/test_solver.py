@@ -79,3 +79,22 @@ def test_from_txt():
     result = solver.solve_sudoku(solver.original_board)
 
     assert (result == expected_solution).all()
+
+
+def test_unsolvable_board():
+    input_array = np.array([
+       [0, 3, 0, 0, 0, 0, 8, 3, 0],
+       [0, 0, 0, 0, 0, 6, 9, 0, 5],
+       [0, 0, 0, 4, 0, 0, 0, 7, 0],
+       [0, 0, 0, 8, 0, 0, 5, 0, 0],
+       [5, 3, 6, 0, 1, 4, 0, 0, 7],
+       [2, 1, 0, 0, 0, 0, 0, 0, 0],
+       [4, 0, 1, 3, 0, 0, 0, 0, 0],
+       [0, 0, 9, 0, 8, 2, 0, 0, 0],
+       [3, 6, 0, 0, 0, 0, 0, 0, 0]
+    ], dtype=int)
+
+    solver = SudokuSolver(input_array)
+    result = solver.solve_sudoku(solver.original_board)
+
+    assert result is None
