@@ -139,12 +139,11 @@ class SudokuSolver:
         flipped_board = np.flipud(board)
         grid_size = len(flipped_board)
 
-        line = f'{(grid_size*4 - 1)*"-"}\n'
-
         # Start with two whitespaces
         output = [" "]
 
         def divider():
+            line = f'{(grid_size*4 - 1)*"-"}\n'
             output.append(line)
 
         divider()
