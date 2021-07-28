@@ -75,7 +75,7 @@ def test_from_txt():
         [4, 9, 3, 8, 2, 5, 1, 7, 6],
         [6, 7, 1, 4, 9, 3, 8, 5, 2]
     ], dtype=int)
-    solver = SudokuSolver.from_txt('tests/board_1.txt')
+    solver = SudokuSolver.from_txt('boards/board_1.txt')
     result = solver.solve_sudoku(solver.original_board)
 
     assert (result == expected_solution).all()
