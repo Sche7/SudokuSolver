@@ -3,7 +3,6 @@ For computing a solution to any sudoku board.
 
 ## Required libraries
 - numpy
-- ipython
 - pytest
 - nptyping
 - pandas
