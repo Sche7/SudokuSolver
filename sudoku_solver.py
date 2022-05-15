@@ -1,5 +1,6 @@
 from typing import Union, Optional
 from nptyping import NDArray
+from tqdm import tqdm
 import numpy as np
 import pandas as pd
 
@@ -161,7 +162,8 @@ class SudokuSolver:
     def solve_sudoku(
         self,
         board: NDArray,
-        node: tuple = (0, 0)
+        node: tuple = (0, 0),
+        pbar: Optional[tqdm] = None
     ) -> Union[None, NDArray]:
         """
         Method for solving a sudoku board.
@@ -170,6 +172,9 @@ class SudokuSolver:
             An np.array, if solution is found
             None, if no solution is found
         """
+        if pbar is not None:
+            pbar.update(1)
+
         # Return board if board is complete
         if self.is_complete(board):
             return board
@@ -181,7 +186,8 @@ class SudokuSolver:
         if board[node] != 0:
             return self.solve_sudoku(
                     board=board,
-                    node=self.get_child(node)
+                    node=self.get_child(node),
+                    pbar=pbar
             )
         else:
             for i in range(1, 10):
@@ -198,7 +204,8 @@ class SudokuSolver:
                     # and return board if solution is found
                     result = self.solve_sudoku(
                         board=board,
-                        node=self.get_child(node)
+                        node=self.get_child(node),
+                        pbar=pbar
                     )
                     if result is not None:
                         return result
@@ -242,12 +249,16 @@ class SudokuSolver:
         >>> solver.run()
         """
         input_file = f' for {self.input_file}' if self.input_file else ''
-        print(f'Computing solution{input_file}...')
-        result = self.solve_sudoku(board=self.original_board)
+        pbar = tqdm(
+            ncols=0,
+            desc=f'Computing solution{input_file}',
+            leave=False
+        )
+        result = self.solve_sudoku(board=self.original_board, pbar=pbar)
 
         if result is not None:
-            print("A Solution has been found:")
+            print("\n A Solution has been found:")
             self.print_board(result)
         else:
-            print("No solution found for:")
+            print("\n No solution found for:")
             self.print_board(self.original_board)
