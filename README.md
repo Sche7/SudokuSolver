@@ -10,10 +10,10 @@ For computing a solution to any sudoku board.
 ## How to use the repo
 
 ### Installation
-In the repo-folder, run:<br>
-<code>pip install -r requirements.txt</code><br>
-and<br>
-<code>pip install -e .</code>
+In the repo-folder, run:
+1. <code>pip install -U pip setuptools</code>
+2. <code>pip install -r requirements.txt</code>
+3. <code>pip install .</code>
 
 To see that everything has been installed correctly, run:<br>
 <code>pytest tests/</code><br>
