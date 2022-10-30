@@ -1,5 +1,5 @@
 import numpy as np
-from displayers.displayer import DisplayInterface
+from displayers import DisplayInterface
 from nptyping import NDArray
 
 
