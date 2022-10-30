@@ -11,6 +11,10 @@ setup(
       'run',
       'sudoku_solver'
     ],
+    packages=[
+      'displayers',
+      'tests'
+    ],
     entry_points='''
         [console_scripts]
         solve=run:main

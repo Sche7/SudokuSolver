@@ -1,10 +1,19 @@
 from sudoku_solver import SudokuSolver
+from displayers.terminal import TerminalDisplayer
 
 
 def run_script(*args):
     for arg in args:
+        displayer = TerminalDisplayer()
         solver = SudokuSolver.from_txt(arg)
-        solver.run()
+        result = solver.run()
+
+        if result is not None:
+            print("\n A Solution has been found:")
+            displayer.display(result)
+        else:
+            print("\n No solution found for:")
+            displayer.display(solver.original_board)
 
 
 def main():

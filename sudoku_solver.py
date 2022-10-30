@@ -128,33 +128,6 @@ class SudokuSolver:
 
         return self.is_valid(copied_board)
 
-    def print_board(self, board: NDArray) -> None:
-        """
-        A simple method for printing Sudoku board to the terminal
-        in a prettier format
-        """
-        flipped_board = np.flipud(board)
-        grid_size = len(flipped_board)
-
-        # Start with two whitespaces
-        output = [" "]
-
-        def divider():
-            line = f'{(grid_size*4 - 1)*"-"}\n'
-            output.append(line)
-
-        divider()
-
-        # Other rows
-        for i in range(grid_size-1, -1, -1):
-            for j in range(grid_size):
-                output.append(
-                    f"| {flipped_board[i, j]} "
-                )
-            output.append('| \n')
-            divider()
-        print("".join(output), flush=True)
-
     def solve_sudoku(
         self,
         board: NDArray,
@@ -226,9 +199,11 @@ class SudokuSolver:
         board = np.array(output, dtype=int)
         return cls(board=board, input_file=input_file)
 
-    def run(self) -> None:
+    def run(self) -> Union[None, NDArray]:
         """
         Method for running the SudokuSolver.
+
+        Returns None if not solution is found.
 
         Example:
         >>> board = np.array(
@@ -250,11 +225,4 @@ class SudokuSolver:
             desc=f'Computing solution{input_file}',
             leave=False
         )
-        result = self.solve_sudoku(board=self.original_board, pbar=pbar)
-
-        if result is not None:
-            print("\n A Solution has been found:")
-            self.print_board(result)
-        else:
-            print("\n No solution found for:")
-            self.print_board(self.original_board)
+        return self.solve_sudoku(board=self.original_board, pbar=pbar)
