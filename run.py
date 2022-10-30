@@ -3,8 +3,9 @@ from displayers.terminal import TerminalDisplayer
 
 
 def run_script(*args):
+    displayer = TerminalDisplayer()
+
     for arg in args:
-        displayer = TerminalDisplayer()
         solver = SudokuSolver.from_txt(arg)
         result = solver.run()
 
