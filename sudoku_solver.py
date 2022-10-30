@@ -2,17 +2,13 @@ from typing import Union, Optional
 from nptyping import NDArray
 from tqdm import tqdm
 import numpy as np
-import pandas as pd
 
 
 class SudokuSolver:
     coordinates = [(i, j) for i in range(9) for j in range(9)]
-    tree_df = pd.DataFrame(
-            {'parent': coordinates[:-1], 'child': coordinates[1:]}
-        )
     tree_dict = {
-            index['parent']: index['child']
-            for index in tree_df.to_dict(orient='records')
+            parent: child
+            for parent, child in zip(coordinates[:-1], coordinates[1:])
         }
 
     def __init__(self, board: NDArray, input_file: Optional[str] = None):

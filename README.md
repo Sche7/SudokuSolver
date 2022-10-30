@@ -5,7 +5,6 @@ For computing a solution to any sudoku board.
 - numpy
 - pytest
 - nptyping
-- pandas
 
 ## How to use the repo
 
