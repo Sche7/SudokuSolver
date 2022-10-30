@@ -17,7 +17,7 @@ def test_empty_board_is_not_complete():
     """
     empty_board = np.zeros((9, 9), dtype=int)
     sudoku_solver = SudokuSolver(empty_board)
-    assert sudoku_solver.is_complete(empty_board) is False
+    assert not sudoku_solver.is_complete(empty_board)
 
 
 def test_complete_board_is_valid():
@@ -66,13 +66,13 @@ def test_complete_board_invalid_row():
     sudoku_solver = SudokuSolver(board)
 
     # See that board is incomplete
-    assert sudoku_solver.is_complete(board) is False
+    assert not sudoku_solver.is_complete(board)
 
     # See that board is valid column-wise
     assert sudoku_solver.columns_are_valid(board)
 
     # See that board is invalid row-wise
-    assert sudoku_solver.rows_are_valid(board) is False
+    assert not sudoku_solver.rows_are_valid(board)
 
 
 def test_complete_board_invalid_col():
@@ -95,13 +95,13 @@ def test_complete_board_invalid_col():
     sudoku_solver = SudokuSolver(board)
 
     # See that board is incomplete
-    assert sudoku_solver.is_complete(board) is False
+    assert not sudoku_solver.is_complete(board)
 
     # See that board is valid row-wise
     assert sudoku_solver.rows_are_valid(board)
 
     # See that board is invalid column-wise
-    assert sudoku_solver.columns_are_valid(board) is False
+    assert not sudoku_solver.columns_are_valid(board)
 
 
 def test_invalid_subgrid():
@@ -124,7 +124,7 @@ def test_invalid_subgrid():
     sudoku_solver = SudokuSolver(board)
 
     # See that board is incomplete
-    assert sudoku_solver.is_complete(board) is False
+    assert not sudoku_solver.is_complete(board)
 
     # See that board is valid row-wise
     assert sudoku_solver.rows_are_valid(board)
@@ -133,7 +133,7 @@ def test_invalid_subgrid():
     assert sudoku_solver.columns_are_valid(board)
 
     # See that board is invalid subgrid-wise
-    assert sudoku_solver.subgrids_are_valid(board) is False
+    assert not sudoku_solver.subgrids_are_valid(board)
 
 
 def test_complete_board_is_invalid():
@@ -159,7 +159,7 @@ def test_complete_board_is_invalid():
     assert sudoku_solver.is_complete(complete_board)
 
     # See that board is invalid
-    assert sudoku_solver.is_valid(complete_board) is False
+    assert not sudoku_solver.is_valid(complete_board)
 
 
 def test_incomplete_board_is_valid():
@@ -206,7 +206,7 @@ def test_incomplete_board_is_invalid():
     sudoku_solver = SudokuSolver(incomplete_board)
 
     # See that board is indeed complete
-    assert sudoku_solver.is_complete(incomplete_board) is False
+    assert not sudoku_solver.is_complete(incomplete_board)
 
     # See that board is invalid
-    assert sudoku_solver.is_valid(incomplete_board) is False
+    assert not sudoku_solver.is_valid(incomplete_board)
