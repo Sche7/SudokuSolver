@@ -12,8 +12,8 @@ setup(
       'core.sudoku_solver'
     ],
     packages=[
-      'displayers',
-      'tests'
+      'core.displayers',
+      'core.tests'
     ],
     entry_points='''
         [console_scripts]

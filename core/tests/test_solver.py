@@ -1,3 +1,4 @@
+import os
 import numpy as np
 
 from core.sudoku_solver import SudokuSolver
@@ -75,7 +76,9 @@ def test_from_txt():
         [4, 9, 3, 8, 2, 5, 1, 7, 6],
         [6, 7, 1, 4, 9, 3, 8, 5, 2]
     ], dtype=int)
-    solver = SudokuSolver.from_txt('boards/board_1.txt')
+    filepath = os.path.abspath('core/boards/board_1.txt')
+
+    solver = SudokuSolver.from_txt(filepath)
     result = solver.solve_sudoku(solver.original_board)
 
     assert (result == expected_solution).all()
