@@ -4,3 +4,4 @@ pytest
 nptyping
 tqdm
 flask
+flask-cors
