@@ -13,7 +13,7 @@ In the repo-folder, run:<br>
 <code>make setup</code>
 
 To see that everything has been installed correctly, run:<br>
-<code>pytest tests/</code><br>
+<code>pytest core/tests/</code><br>
 You should see that all tests passes.
 
 ### Running SudokuSolver from terminal
@@ -29,7 +29,7 @@ In the terminal, simply use the command <code>solve</code> followed by an input 
 4 9 3 8 2 5 1 7 6
 0 7 0 4 9 3 8 5 2
 ```
-where <strong>0</strong> represents empty cells, see also '/tests/board_1.txt'. Given an input file, you can compute a solution by executing:<br>
+where <strong>0</strong> represents empty cells, see also `SudokuSolver/core/boards` for examples. Given an input file, you can compute a solution by executing:<br>
 <code>solve *<strong>input_filepath</strong>* </code><br><br>
 It is also possible to execute <code>solve</code> iteratively over multiple input files:<br>
 <code>solve *<strong>input_filepath_1</strong>* *<strong>input_filepath_2</strong>* *<strong>input_filepath_3</strong>* ... </code><br>
@@ -54,6 +54,6 @@ solver.run()
 #### Example 2
 If it is desired to load the Sudoku board from a .txt-file use:<br>
 ```python
-solver = SudokuSolver.from_txt('tests/board_1.txt')
+solver = SudokuSolver.from_txt('core/boards/board_1.txt')
 solver.run()
 ```
