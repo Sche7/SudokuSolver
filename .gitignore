@@ -5,3 +5,4 @@ venv
 **/*.egg-info
 tmp
 build/
+**/node_modules
