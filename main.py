@@ -23,5 +23,10 @@ def greetings():
     return "hello hello"
 
 
+@app.route("/solve", methods=["GET"])
+def solve():
+    return "Solved!"
+
+
 if __name__ == "__main__":
     app.run(debug=True)
