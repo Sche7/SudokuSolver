@@ -1,6 +1,6 @@
 import numpy as np
 
-from sudoku_solver import SudokuSolver
+from core.sudoku_solver import SudokuSolver
 
 
 def test_sudoku_solver_1():

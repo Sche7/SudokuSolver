@@ -1,5 +1,5 @@
 import numpy as np
-from sudoku_solver import SudokuSolver
+from core.sudoku_solver import SudokuSolver
 
 
 def test_empty_board_is_valid():
