@@ -4,6 +4,8 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" crossorigin="anonymous">
       <b><p>Welcome to Steven's Sudoku Solver</p></b>
       <hr><br>
+      <SudokuGrid/>
+      <hr><br>
       <div class="row">
         <div class="col-sm-12" align="left">
             <SolveBoard id="solve-button"/> 
@@ -19,10 +21,11 @@
 <script>
 
 import SolveBoard from './components/SolveBoard.vue';
-
+import SudokuGrid from './components/SudokuGrid.vue';
 export default {
   components: {
-    SolveBoard
+    SolveBoard,
+    SudokuGrid
   }
 
 }
@@ -41,5 +44,9 @@ export default {
 #solve-button {
   display:inline-block;
   margin-right: 15px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>
