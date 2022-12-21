@@ -6,12 +6,7 @@
       <hr><br>
       <div class="row">
         <div class="col-sm-12" align="left">
-            <button type="button" class="btn btn-success btn-sm">
-              Solve board
-            </button>
-            <button type="button" class="btn btn-info btn-sm">
-              Upload board
-            </button>
+            <SolveBoard id="solve-button"/> 
             <button type="button" class="btn btn-primary btn-sm">
               Reset
             </button>
@@ -23,7 +18,12 @@
 
 <script>
 
+import SolveBoard from './components/SolveBoard.vue';
+
 export default {
+  components: {
+    SolveBoard
+  }
 
 }
 </script>
@@ -36,5 +36,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#solve-button {
+  display:inline-block;
+  margin-right: 15px;
 }
 </style>

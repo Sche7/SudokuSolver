@@ -1,14 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Solve from '../components/Solve.vue';
+import SolveBoard from '../components/SolveBoard.vue';
 
 Vue.useAttrs(VueRouter)
 
 const routes = [
     {
         path: '/solve/:board_id',
-        name: 'Solve',
-        component: Solve,
+        name: 'SolveBoard',
+        component: SolveBoard,
     }
 ];
 

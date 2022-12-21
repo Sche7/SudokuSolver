@@ -1,20 +1,15 @@
 <template>
     <div>
-        <button type="button" class="btn btn-success btn-sm"> {{ msg }}</button>
+        <button @click="SolveBoard" type="button" class="btn btn-success btn-sm"> Solve board </button>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 export default {
-    name: 'Solve',
-    data(){
-        return {
-            msg: ""
-        }
-    },
+    name: 'SolveBoard',
     methods : {
-        getResponse(){
+        SolveBoard(){
             const path = 'http://localhost:5000/solve';
             axios.get(path)
             .then ((res) => {
@@ -27,8 +22,7 @@ export default {
         }
     },
     created(){
-        this.getResponse();
+        this.SolveBoard();
     }
 }
-
 </script>
