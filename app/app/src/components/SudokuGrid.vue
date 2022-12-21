@@ -5,7 +5,9 @@
         <tr v-for="(row, idx) in grid" :key="idx">
           <td v-for="(cell, idy) in row" :key="idy" 
           :class="{ locked: grid[idx][idy].locked, selected:grid[idx][idy].selected }"
-          @click="setSelected(grid[idx][idy], idx, idy)"> {{ grid[idx][idy].toString() }} </td>
+          @click="setSelected(grid[idx][idy], idx, idy)">
+            {{ greaterThanZero(grid[idx][idy]) }}
+          </td>
         </tr>
         </tbody>
       </table>
@@ -37,27 +39,33 @@
     },
     methods: {
       pickNumber(e) {
-        let typed = parseInt(String.fromCharCode(e.keyCode),10);
+        let typed = parseInt(String.fromCharCode(e.keyCode), 10);
         // if it was NaN, split out
         if(!typed) return;
         console.log(typed);
       },
-      setSelected(cell,x,y) {
+      setSelected(cell, x, y) {
         console.log(cell)
         console.log(x)
         console.log(y)
-      }
+      },
+      greaterThanZero(cell){
+        if (cell > 0) {
+            return cell.toString();
+        } else {
+            return ""
+        }
+    }
     },
     mounted() {
       window.addEventListener('keypress', this.pickNumber);
     },
     unmounted() {
       window.removeEventListener('keypress', this.pickNumber);
-    }
+    },
   }
   </script>
-  
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
+
   <style scoped>
   table {
     border-collapse: collapse;

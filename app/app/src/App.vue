@@ -7,7 +7,7 @@
       <SudokuGrid/>
       <hr><br>
       <div class="row">
-        <div class="col-sm-12" align="left">
+        <div class="col-sm-12" align="center">
             <SolveBoard id="solve-button"/> 
             <button type="button" class="btn btn-primary btn-sm">
               Reset
