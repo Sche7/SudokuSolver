@@ -9,9 +9,7 @@
       <div class="row">
         <div class="col-sm-12" align="center">
             <SolveBoard id="solve-button"/> 
-            <button type="button" class="btn btn-primary btn-sm">
-              Reset
-            </button>
+            <ResetBoard id="reset-button"/>
         </div>
       </div>
     </div>
@@ -22,10 +20,12 @@
 
 import SolveBoard from './components/SolveBoard.vue';
 import SudokuGrid from './components/SudokuGrid.vue';
+import ResetBoard from './components/ResetBoard.vue';
 export default {
   components: {
     SolveBoard,
-    SudokuGrid
+    SudokuGrid,
+    ResetBoard
   }
 
 }
@@ -42,6 +42,11 @@ export default {
 }
 
 #solve-button {
+  display:inline-block;
+  margin-right: 15px;
+}
+
+#reset-button {
   display:inline-block;
   margin-right: 15px;
 }
