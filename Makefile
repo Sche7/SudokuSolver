@@ -15,4 +15,4 @@ build-docker-backend:
 	docker build . -t $(backend_name) -f backend.dockerfile
 
 run-docker-backend:
-	docker run -it --rm -d -p 5000:5000 sudoku_backend python main.py
+	docker run -it --rm -d -p 5000:5000 $(backend_name) python main.py
