@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      dockerfile: backend.dockerfile
+    command: python main.py
+    container_name: backend
+    working_dir: /sudoku_solver
+    ports:
+      - 5000:5000
+    volumes:
+      - ./core:/sudoku_solver/core
+      - ./main.py:/sudoku_solver/main.py
