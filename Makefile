@@ -9,7 +9,10 @@ setup-dev:
 	pip install -e .
 
 
-backend_name = 'sudoku_backend'
+backend_name = 'backend'
 
 build-docker-backend:
 	docker build . -t $(backend_name) -f backend.dockerfile
+
+run-docker-backend:
+	docker run -it --rm -d -p 5000:5000 sudoku_backend python main.py
