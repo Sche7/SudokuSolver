@@ -1,4 +1,6 @@
-from flask import Flask
+import json
+
+from flask import Flask, request
 from flask_cors import CORS
 
 
@@ -20,12 +22,13 @@ CORS(app, resource={r"/*": {
 
 @app.route("/", methods=["GET"])
 def greetings():
-    return "hello hello"
+    return "Backend server is online!"
 
 
-@app.route("/solve", methods=["GET"])
+@app.route("/solve", methods=["POST"])
 def solve():
-    return "Solved!"
+    board = json.loads(request.data)
+    return board
 
 
 if __name__ == "__main__":
