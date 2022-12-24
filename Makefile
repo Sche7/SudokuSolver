@@ -16,3 +16,6 @@ build-docker-backend:
 
 run-docker-backend:
 	docker run -it --rm -d -p 5000:5000 $(backend_name) python main.py
+
+run-app:
+	docker-compose up --build -d
