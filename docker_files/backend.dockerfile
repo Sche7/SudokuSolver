@@ -4,10 +4,10 @@ FROM python:3.9.15
 WORKDIR /sudoku_solver
 
 # Install dependencies
-COPY requirements.txt /sudoku_solver/
+COPY requirements.txt ./
 RUN pip install --no-cache-dir --upgrade pip setuptools && \
     pip install --no-cache-dir --upgrade -r requirements.txt
 
 # Copy backend
-COPY /core /sudoku_solver/core
-COPY main.py /sudoku_solver/
+COPY /core ./core
+COPY main.py ./
