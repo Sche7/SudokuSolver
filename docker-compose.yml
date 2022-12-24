@@ -10,3 +10,13 @@ services:
     volumes:
       - ./core:/sudoku_solver/core
       - ./main.py:/sudoku_solver/main.py
+
+  frontend:
+    build:
+      dockerfile: docker_files/frontend.dockerfile
+    container_name: frontend
+    working_dir: /sudoku_solver/app
+    ports:
+      - 8080:8080
+#    volumes:
+#      - ./app/app:/sudoku_solver/app
