@@ -48,6 +48,7 @@
         console.log(cell)
         console.log(x)
         console.log(y)
+        console.log(this.grid)
       },
       greaterThanZero(cell){
         if (cell > 0) {
@@ -55,7 +56,11 @@
         } else {
             return ""
         }
-    }
+      },
+      getCurrentBoard(){
+        print(this.grid)
+        return this.grid
+      }
     },
     mounted() {
       window.addEventListener('keypress', this.pickNumber);

@@ -6,12 +6,13 @@
 
 <script>
 import axios from 'axios';
+
 export default {
     name: 'SolveBoard',
     methods : {
         SolveBoard(){
             const path = 'http://localhost:5000/solve';
-            axios.get(path)
+            axios.post(path)
             .then ((res) => {
                 console.log(res.data)
                 this.msg = res.data;

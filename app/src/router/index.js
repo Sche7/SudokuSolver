@@ -6,7 +6,7 @@ Vue.useAttrs(VueRouter)
 
 const routes = [
     {
-        path: '/solve/:board_id',
+        path: '/solve',
         name: 'SolveBoard',
         component: SolveBoard,
     }
