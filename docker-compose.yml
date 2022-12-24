@@ -1,7 +1,7 @@
 services:
-  app:
+  backend:
     build:
-      dockerfile: backend.dockerfile
+      dockerfile: docker_files/backend.dockerfile
     command: python main.py
     container_name: backend
     working_dir: /sudoku_solver
