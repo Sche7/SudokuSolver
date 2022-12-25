@@ -4,29 +4,18 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" crossorigin="anonymous">
       <b><p>Welcome to Steven's Sudoku Solver</p></b>
       <hr><br>
-      <SudokuGrid/>
-      <hr><br>
-      <div class="row">
-        <div class="col-sm-12" align="center">
-            <SolveBoard id="solve-button"/> 
-            <ResetBoard id="reset-button"/>
-        </div>
-      </div>
+        <SudokuBoard/>
     </div>
     </div>
 </template>
 
 <script>
 
-import SolveBoard from './components/SolveBoard.vue';
-import SudokuGrid from './components/SudokuGrid.vue';
-import ResetBoard from './components/ResetBoard.vue';
+import SudokuBoard from './components/SudokuBoard.vue';
 export default {
   components: {
-    SolveBoard,
-    SudokuGrid,
-    ResetBoard
-  }
+    SudokuBoard
+}
 
 }
 </script>

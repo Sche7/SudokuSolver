@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import SolveBoard from '../components/SolveBoard.vue';
+import SolveBoard from '../components/SudokuBoard.vue';
 
 Vue.useAttrs(VueRouter)
 
