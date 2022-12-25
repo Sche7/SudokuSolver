@@ -24,84 +24,72 @@
 <script>
 import axios from 'axios';
 
+function initialBoard(){
+  return {
+    grid: [
+    [0, 0, 9, 0, 0, 0, 4, 6, 3],
+    [0, 0, 6, 3, 4, 0, 5, 2, 9],
+    [2, 3, 4, 5, 6, 9, 7, 1, 8],
+    [0, 6, 7, 0, 0, 0, 3, 4, 1],
+    [0, 4, 0, 0, 3, 0, 2, 9, 5],
+    [0, 2, 0, 0, 0, 0, 6, 8, 0],
+    [0, 0, 2, 0, 0, 1, 9, 3, 4],
+    [4, 9, 3, 8, 2, 5, 1, 7, 6],
+    [0, 7, 0, 4, 9, 3, 8, 5, 2],
+    ]
+  }
+}
+
 export default {
     name: 'SudokuBoard',
     data() {
-        return {
-            grid: [
-            [0, 0, 9, 0, 0, 0, 4, 6, 3],
-            [0, 0, 6, 3, 4, 0, 5, 2, 9],
-            [2, 3, 4, 5, 6, 9, 7, 1, 8],
-            [0, 6, 7, 0, 0, 0, 3, 4, 1],
-            [0, 4, 0, 0, 3, 0, 2, 9, 5],
-            [0, 2, 0, 0, 0, 0, 6, 8, 0],
-            [0, 0, 2, 0, 0, 1, 9, 3, 4],
-            [4, 9, 3, 8, 2, 5, 1, 7, 6],
-            [0, 7, 0, 4, 9, 3, 8, 5, 2],
-            ]
-        }
+      return initialBoard()
     },
     methods : {
         solveBoard(){
-            const path = 'http://localhost:5000/solve';
-            axios.post(path, {data: this.grid})
-            .then ((res) => {
-                const result = res.data;
-                return {
-                  grid: result
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-            })
+          const path = 'http://localhost:5000/solve';
+          axios.post(path, {data: this.grid})
+          .then ((res) => {
+            const result = res.data;
+            return {
+              grid: result
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+          })
         },
         pickNumber(e) {
-        let typed = parseInt(String.fromCharCode(e.keyCode), 10);
-        // if it was NaN, split out
-        if(!typed) return;
-        console.log(typed);
+          let typed = parseInt(String.fromCharCode(e.keyCode), 10);
+          // if it was NaN, split out
+          if(!typed) return;
+          console.log(typed);
         },
         setSelected(cell, x, y) {
-            console.log(cell)
-            console.log(x)
-            console.log(y)
-            console.log(this.grid)
+          console.log(cell)
+          console.log(x)
+          console.log(y)
+          console.log(this.grid)
         },
         greaterThanZero(cell){
-            if (cell > 0) {
-                return cell.toString();
-            } else {
-                return ""
-            }
-        },
-        getCurrentBoard(){
-            print(this.grid)
-            return this.grid
+          if (cell > 0) {
+              return cell.toString();
+          } else {
+              return ""
+          }
         },
         resetBoard(){
-              console.log('Resetting...');
-              return {
-                grid: [
-              [0, 0, 0, 0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 0],
-              ]
-              }
+          console.log('Resetting...');
+          Object.assign(this.$data, initialBoard());
           },
         mounted() {
-        window.addEventListener('keypress', this.pickNumber);
+          window.addEventListener('keypress', this.pickNumber);
         },
         unmounted() {
-        window.removeEventListener('keypress', this.pickNumber);
+          window.removeEventListener('keypress', this.pickNumber);
         },
         created(){
-            this.SolveBoard();
+          this.SolveBoard();
         }
     }
 }
