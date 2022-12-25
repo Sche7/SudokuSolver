@@ -1,7 +1,9 @@
 import json
+import numpy as np
 
 from flask import Flask, request
 from flask_cors import CORS
+from core.sudoku_solver import SudokuSolver
 
 
 # Instantiate flask application
@@ -27,8 +29,10 @@ def greetings():
 
 @app.route("/solve", methods=["POST"])
 def solve():
-    board = json.loads(request.data)
-    return board
+    board = np.array(json.loads(request.data))
+    solver = SudokuSolver(board=board)
+    result = solver.run()
+    return result
 
 
 if __name__ == "__main__":
