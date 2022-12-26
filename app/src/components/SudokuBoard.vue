@@ -51,9 +51,7 @@ export default {
           axios.post(path, {data: this.grid})
           .then ((res) => {
             const result = res.data;
-            return {
-              grid: result
-            }
+            Object.assign(this.$data, {grid: result});
           })
           .catch((err) => {
             console.error(err);
