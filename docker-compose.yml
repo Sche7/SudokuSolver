@@ -10,6 +10,8 @@ services:
     volumes:
       - ./core:/sudoku_solver/core
       - ./main.py:/sudoku_solver/main.py
+    networks:
+      - sudoku
 
   frontend:
     build:
@@ -18,5 +20,11 @@ services:
     working_dir: /sudoku_solver/app
     ports:
       - 8080:8080
+    networks:
+      - sudoku
 #    volumes:
 #      - ./app/app:/sudoku_solver/app
+
+networks:
+  sudoku:
+    driver: bridge
