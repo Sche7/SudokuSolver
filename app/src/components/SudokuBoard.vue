@@ -80,15 +80,6 @@ export default {
           console.log('Resetting...');
           Object.assign(this.$data, initialBoard());
           },
-        mounted() {
-          window.addEventListener('keypress', this.pickNumber);
-        },
-        unmounted() {
-          window.removeEventListener('keypress', this.pickNumber);
-        },
-        created(){
-          this.SolveBoard();
-        }
     }
 }
 </script>
