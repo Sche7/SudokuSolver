@@ -14,8 +14,8 @@
       <hr><br>
       <div class="row">
         <div class="col-sm-12" align="center">
-            <button @click="solveBoard" type="button" class="btn btn-success btn-sm"> Solve board </button>
-            <button @click="resetBoard" type="button" class="btn btn-primary btn-sm"> Reset </button>
+            <button @click="solveBoard" class="btn btn-success btn-sm"> Solve board </button>
+            <button @click="resetBoard" class="btn btn-primary btn-sm"> Reset </button>
         </div>
       </div>
     </div>
