@@ -16,7 +16,7 @@ app.config.from_object(__name__)
 
 # Enable Cross origin resource sharing
 CORS(app, resource={r"/*": {
-    'origins': "http://localhost:8080",  # default port for vue
+    'origins': "http://*:8080",  # default port for vue
     "allow_headers": "Access-Control-Allow-Origin"
     }
 })
@@ -29,10 +29,11 @@ def greetings():
 
 @app.route("/solve", methods=["POST"])
 def solve():
-    board = np.array(json.loads(request.data))
+    data = json.loads(request.data).get('data')
+    board = np.array(data)
     solver = SudokuSolver(board=board)
     result = solver.run()
-    return result
+    return result.tolist()
 
 
 if __name__ == "__main__":
