@@ -1,6 +1,7 @@
 from typing import Union, Optional
 from nptyping import NDArray
 from tqdm import tqdm
+from random import shuffle
 import numpy as np
 
 
@@ -132,7 +133,8 @@ class SudokuSolver:
         self,
         board: NDArray,
         node: tuple = (0, 0),
-        pbar: Optional[tqdm] = None
+        pbar: Optional[tqdm] = None,
+        randomize_solution: Optional[bool] = False
     ) -> Union[None, NDArray]:
         """
         Method for solving a sudoku board.
@@ -148,6 +150,11 @@ class SudokuSolver:
         if self.is_complete(board):
             return board
 
+        # Shuffle board numbers if specified
+        board_numbers = [i for i in range(1, 10)]
+        if randomize_solution:
+            shuffle(board_numbers)
+
         # if node is already filled (one of the nodes starting with a value),
         # skip directly to next child node
         # else fill current cell with a valid value
@@ -159,7 +166,7 @@ class SudokuSolver:
                     pbar=pbar
             )
         else:
-            for i in range(1, 10):
+            for i in board_numbers:
                 # if value 'i' is valid then proceed with value 'i'
                 # else try next incremented value
                 if self.value_is_valid(
