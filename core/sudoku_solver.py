@@ -134,7 +134,7 @@ class SudokuSolver:
         board: NDArray,
         node: tuple = (0, 0),
         pbar: Optional[tqdm] = None,
-        randomize_solution: Optional[bool] = False
+        randomize: Optional[bool] = False
     ) -> Union[None, NDArray]:
         """
         Method for solving a sudoku board.
@@ -152,7 +152,7 @@ class SudokuSolver:
 
         # Shuffle board numbers if specified
         board_numbers = [i for i in range(1, 10)]
-        if randomize_solution:
+        if randomize:
             shuffle(board_numbers)
 
         # if node is already filled (one of the nodes starting with a value),
