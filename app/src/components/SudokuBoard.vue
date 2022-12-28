@@ -15,7 +15,8 @@
       <div class="row">
         <div class="col-sm-12" align="center">
             <button @click="solveBoard" class="btn btn-success btn-sm"> Solve board </button>
-            <button @click="resetBoard" class="btn btn-primary btn-sm"> Reset </button>
+            <button @click="randomizeBoard" class="btn btn-primary btn-sm"> Randomize </button>
+            <button @click="resetBoard" class="btn btn-primary btn-danger"> Reset </button>
         </div>
       </div>
     </div>
@@ -49,6 +50,17 @@ export default {
         solveBoard(){
           const path = 'http://localhost:5000/solve';
           axios.post(path, {data: this.grid})
+          .then ((res) => {
+            const result = res.data;
+            Object.assign(this.$data, {grid: result});
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+        },
+        randomizeBoard(){
+          const path = 'http://localhost:5000/randomize';
+          axios.get(path)
           .then ((res) => {
             const result = res.data;
             Object.assign(this.$data, {grid: result});
