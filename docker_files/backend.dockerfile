@@ -10,4 +10,3 @@ RUN pip install --no-cache-dir --upgrade pip setuptools && \
 
 # Copy backend
 COPY /core ./core
-COPY main.py ./
