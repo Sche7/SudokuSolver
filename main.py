@@ -29,11 +29,17 @@ def greetings():
 
 @app.route("/solve", methods=["POST"])
 def solve():
+    # Fetch request data
     data = json.loads(request.data).get('data')
-    board = np.array(data)
-    solver = SudokuSolver(board=board)
+
+    # Run solver
+    solver = SudokuSolver(board=np.array(data))
     result = solver.run()
-    return result.tolist()
+
+    if result is not None:
+        result = result.tolist()
+
+    return result
 
 
 if __name__ == "__main__":
