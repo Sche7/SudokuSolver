@@ -5,3 +5,4 @@ nptyping
 tqdm
 flask
 flask-cors
+pydantic
