@@ -10,9 +10,9 @@ from sudoku_solver import SudokuSolver
 
 
 class SudokuLevel(Enum):
-    EASY = 30
-    MEDIUM = 45
-    HARD = 60
+    EASY = 20
+    MEDIUM = 30
+    HARD = 40
 
 
 class SudokuPuzzle(BaseModel):
