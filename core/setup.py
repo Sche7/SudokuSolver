@@ -7,12 +7,10 @@ setup(
     author='Steven Cheung',
     author_email='stevencheung7@outlook.dk',
     description='A library that can solve any sudoku board',
-    py_modules=[
-      'core',
-    ],
+    py_modules=['core'],
     packages=[
-      'core.displayers',
-      'core.tests'
+      'displayers',
+      'tests'
     ],
     entry_points='''
         [console_scripts]
