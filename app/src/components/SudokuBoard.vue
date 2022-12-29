@@ -25,26 +25,25 @@
 <script>
 import axios from 'axios';
 
-function initialBoard(){
-  return {
-    grid: [
-    [0, 0, 9, 0, 0, 0, 4, 6, 3],
-    [0, 0, 6, 3, 4, 0, 5, 2, 9],
-    [2, 3, 4, 5, 6, 9, 7, 1, 8],
-    [0, 6, 7, 0, 0, 0, 3, 4, 1],
-    [0, 4, 0, 0, 3, 0, 2, 9, 5],
-    [0, 2, 0, 0, 0, 0, 6, 8, 0],
-    [0, 0, 2, 0, 0, 1, 9, 3, 4],
-    [4, 9, 3, 8, 2, 5, 1, 7, 6],
-    [0, 7, 0, 4, 9, 3, 8, 5, 2],
+const initial_grid = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
-  }
-}
 
 export default {
     name: 'SudokuBoard',
     data() {
-      return initialBoard()
+      return {
+        grid: initial_grid,
+        initial_grid: initial_grid
+      }
     },
     methods : {
         solveBoard(){
@@ -63,7 +62,7 @@ export default {
           axios.get(path)
           .then ((res) => {
             const result = res.data;
-            Object.assign(this.$data, {grid: result});
+            Object.assign(this.$data, {grid: result, initial_grid: result});
           })
           .catch((err) => {
             console.error(err);
@@ -90,7 +89,7 @@ export default {
         },
         resetBoard(){
           console.log('Resetting...');
-          Object.assign(this.$data, initialBoard());
+          Object.assign(this.$data, {grid: this.initial_grid});
           },
     }
 }
