@@ -163,7 +163,8 @@ class SudokuSolver:
             return self.solve_sudoku(
                     board=board,
                     node=self.get_child(node),
-                    pbar=pbar
+                    pbar=pbar,
+                    randomize=randomize
             )
         else:
             for i in board_numbers:
@@ -181,7 +182,8 @@ class SudokuSolver:
                     result = self.solve_sudoku(
                         board=board,
                         node=self.get_child(node),
-                        pbar=pbar
+                        pbar=pbar,
+                        randomize=randomize
                     )
                     if result is not None:
                         return result
