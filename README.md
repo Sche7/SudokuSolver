@@ -7,9 +7,9 @@ For computing a solution to any sudoku board.
 
 The sudoku solver has a frontend web application that can easily be setup locally. From the repository folder, run:
 ```bash
-make composer-docker
+make compose-docker
 ```
-Note that, it is required to have Docker installed on your computer.
+Note that, it is required to have `Docker` installed on your computer.
 
 ## Installation in Python
 In the repository folder, run:<br>
