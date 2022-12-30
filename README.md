@@ -29,8 +29,11 @@ In the terminal, simply use the command <code>solve</code> followed by an input 
 4 9 3 8 2 5 1 7 6
 0 7 0 4 9 3 8 5 2
 ```
-where <strong>0</strong> represents empty cells, see also `SudokuSolver/core/boards` for examples. Given an input file, you can compute a solution by executing:<br>
-<code>solve *<strong>input_filepath</strong>* </code><br><br>
+where <strong>0</strong> represents empty cells, see also `SudokuSolver/core/boards` for examples. Given an input file, you can compute a solution by using the `solve` command. For example:<br>
+```bash
+solve core/boards/board_1.txt
+```
+
 It is also possible to execute <code>solve</code> iteratively over multiple input files:<br>
 ```bash
 solve core/boards/board_1.txt core/boards/board_2.txt core/boards/board_3.txt
