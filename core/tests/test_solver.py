@@ -96,6 +96,10 @@ def test_from_txt():
 
 
 def test_unsolvable_board():
+    """
+    Test that an unsolveable board is
+    deemed unsolveable by the sudoku solver.
+    """
     input_array = np.array([
        [0, 3, 0, 0, 0, 0, 8, 3, 0],
        [0, 0, 0, 0, 0, 6, 9, 0, 5],
