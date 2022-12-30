@@ -1,5 +1,8 @@
 # SudokuSolver
-For computing a solution to any sudoku board.
+
+Welcome to my Sudoku solver! This repository includes:
+- Methods for computing the solution of a sudoku board
+- Methods for generating a sudoku board with a unique solution
 
 ## Run application from Docker
 
