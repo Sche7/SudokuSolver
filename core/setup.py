@@ -14,6 +14,6 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        solve=core.run:main
+        solve=run:main
       '''
 )
