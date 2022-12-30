@@ -3,8 +3,8 @@ import numpy as np
 
 from flask import Flask, request
 from flask_cors import CORS
-from sudoku_solver import SudokuSolver
-from sudoku_generator import SudokuGenerator, SudokuLevel
+from sudoku.solver import SudokuSolver
+from sudoku.generator import SudokuGenerator, SudokuLevel
 
 
 # Instantiate flask application

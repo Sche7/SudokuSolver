@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pytest
 
-from sudoku_solver import SudokuSolver
+from sudoku.solver import SudokuSolver
 
 
 @pytest.mark.parametrize('board, expected_solution', [
@@ -87,7 +87,7 @@ def test_from_txt():
 
     # Get this files directory path
     dir_path = os.path.dirname(os.path.abspath(__file__))
-    filepath = os.path.abspath(f'{dir_path}/../boards/board_1.txt')
+    filepath = os.path.abspath(f'{dir_path}/../../boards/board_1.txt')
 
     solver = SudokuSolver.from_txt(filepath)
     result = solver.solve_sudoku(solver.original_board)

@@ -6,7 +6,7 @@ from enum import Enum
 from random import shuffle
 
 
-from sudoku_solver import SudokuSolver
+from sudoku.solver import SudokuSolver
 
 
 class SudokuLevel(Enum):

@@ -1,4 +1,4 @@
-from sudoku_solver import SudokuSolver
+from sudoku.solver import SudokuSolver
 from displayers.terminal import TerminalDisplayer
 
 

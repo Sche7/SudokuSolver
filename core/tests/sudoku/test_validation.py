@@ -1,5 +1,5 @@
 import numpy as np
-from engine.validation import SudokuValidator
+from sudoku.validation import SudokuValidator
 
 
 def test_empty_board_is_valid():
