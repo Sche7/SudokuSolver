@@ -1,10 +1,18 @@
 # SudokuSolver
 For computing a solution to any sudoku board.
 
-## How to use the repo
+## Run application from Docker
 
-### Installation
-In the repo-folder, run:<br>
+<img src="https://user-images.githubusercontent.com/51048135/210067288-745e608c-c169-4d50-8cd3-89323937c1d9.gif" width="400"/>
+
+The sudoku solver has a frontend web application that can easily be setup locally. From the repository folder, run:
+```bash
+make composer-docker
+```
+Note that, it is required to have Docker installed on your computer.
+
+## Installation in Python
+In the repository folder, run:<br>
 ```bash
 cd core/
 make setup
