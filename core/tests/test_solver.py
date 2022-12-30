@@ -1,7 +1,7 @@
 import os
 import numpy as np
 
-from core.sudoku_solver import SudokuSolver
+from sudoku_solver import SudokuSolver
 
 
 def test_sudoku_solver_1():
@@ -76,7 +76,10 @@ def test_from_txt():
         [4, 9, 3, 8, 2, 5, 1, 7, 6],
         [6, 7, 1, 4, 9, 3, 8, 5, 2]
     ], dtype=int)
-    filepath = os.path.abspath('boards/board_1.txt')
+
+    # Get this files directory path
+    dir_path = os.path.dirname(os.path.abspath(__file__))
+    filepath = os.path.abspath(f'{dir_path}/../boards/board_1.txt')
 
     solver = SudokuSolver.from_txt(filepath)
     result = solver.solve_sudoku(solver.original_board)
