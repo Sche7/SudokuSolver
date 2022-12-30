@@ -5,25 +5,15 @@ from nptyping import NDArray
 from tqdm import tqdm
 from random import shuffle
 
-from sudoku.validation import SudokuValidator
+from sudoku.utils import get_child
+from sudoku.validator import SudokuValidator
 
 
 class SudokuSolver:
-    coordinates = [(i, j) for i in range(9) for j in range(9)]
-    tree_dict = {
-            parent: child
-            for parent, child in zip(coordinates[:-1], coordinates[1:])
-        }
 
     def __init__(self, board: NDArray, input_file: Optional[str] = None):
         self.original_board = board.astype(int)
         self.input_file = input_file
-
-    def get_child(self, node: tuple):
-        """
-        Retrieve child-node. If no child-node exists, returns input-node.
-        """
-        return SudokuSolver.tree_dict.get(node, node)
 
     def solve_sudoku(
         self,
@@ -58,7 +48,7 @@ class SudokuSolver:
         if board[node] != 0:
             return self.solve_sudoku(
                     board=board,
-                    node=self.get_child(node),
+                    node=get_child(node),
                     pbar=pbar,
                     randomize=randomize
             )
@@ -77,7 +67,7 @@ class SudokuSolver:
                     # and return board if solution is found
                     result = self.solve_sudoku(
                         board=board,
-                        node=self.get_child(node),
+                        node=get_child(node),
                         pbar=pbar,
                         randomize=randomize
                     )

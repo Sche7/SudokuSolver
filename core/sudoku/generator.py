@@ -1,12 +1,14 @@
-from typing import Optional, List
-from nptyping import NDArray
 import numpy as np
+
+from typing import Optional, List, Union
+from nptyping import NDArray
 from pydantic import BaseModel
 from enum import Enum
 from random import shuffle
+from tqdm import tqdm
 
-
-from sudoku.solver import SudokuSolver
+from sudoku.utils import get_child
+from sudoku import SudokuSolver, SudokuValidator
 
 
 class SudokuLevel(Enum):
@@ -31,6 +33,69 @@ class SudokuGenerator:
         ]
         return result
 
+    def solve_sudoku(
+        self,
+        board: NDArray,
+        node: tuple = (0, 0),
+        pbar: Optional[tqdm] = None,
+        randomize: Optional[bool] = False
+    ) -> Union[None, NDArray]:
+        """
+        Method for solving a sudoku board.
+
+        Returns
+            An np.array, if solution is found
+            None, if no solution is found
+        """
+        if pbar is not None:
+            pbar.update(1)
+
+        # Return board if board is complete
+        if SudokuValidator.is_complete(board):
+            return board
+
+        # Shuffle board numbers if specified
+        board_numbers = [i for i in range(1, 10)]
+        if randomize:
+            shuffle(board_numbers)
+
+        # if node is already filled (one of the nodes starting with a value),
+        # skip directly to next child node
+        # else fill current cell with a valid value
+        # before going to next child node
+        if board[node] != 0:
+            return self.solve_sudoku(
+                    board=board,
+                    node=get_child(node),
+                    pbar=pbar,
+                    randomize=randomize
+            )
+        else:
+            for i in board_numbers:
+                # if value 'i' is valid then proceed with value 'i'
+                # else try next incremented value
+                if SudokuValidator.value_is_valid(
+                    board=board,
+                    node=node,
+                    node_value=i
+                ):
+                    board[node] = i
+
+                    # Proceed further with valid value
+                    # and return board if solution is found
+                    result = self.solve_sudoku(
+                        board=board,
+                        node=get_child(node),
+                        pbar=pbar,
+                        randomize=randomize
+                    )
+                    if result is not None:
+                        return result
+
+                # reset cell to 0 for next increment of 'i'
+                board[node] = 0
+        return None
+
     def create_puzzle(self, board: NDArray, difficulty: SudokuLevel):
         puzzle = board.copy()
         num_empty_cells = difficulty.value
@@ -42,8 +107,7 @@ class SudokuGenerator:
             puzzle[row, col] = 0
 
             candidate = puzzle.copy()
-            sudoku_solver = SudokuSolver(board=candidate)
-            solved_candidate = sudoku_solver.solve_sudoku(
+            solved_candidate = self.solve_sudoku(
                 board=candidate,
                 randomize=True
             )
