@@ -2,7 +2,7 @@ import numpy as np
 
 from typing import Optional, List
 from nptyping import NDArray
-from pydantic import BaseModel
+from dataclasses import dataclass
 from enum import Enum
 from random import shuffle
 
@@ -16,9 +16,10 @@ class SudokuLevel(Enum):
     HARD = 40
 
 
-class SudokuPuzzle(BaseModel):
-    solution: list
-    puzzle: list
+@dataclass(frozen=True)
+class SudokuPuzzle:
+    solution: NDArray
+    puzzle: NDArray
 
 
 class SudokuGenerator:
@@ -135,5 +136,4 @@ class SudokuGenerator:
         # Generate puzzle
         puzzle = self.create_puzzle(complete_board, difficulty)
 
-        print(puzzle, '\n')
-        return puzzle, complete_board
+        return SudokuPuzzle(puzzle=puzzle, solution=complete_board)

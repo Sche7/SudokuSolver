@@ -56,7 +56,9 @@ def test_get_number_of_solutions(board, expected_total_solutions):
 
 def test_generate_sudoku_puzzle():
     sudoku_generator = SudokuGenerator()
-    puzzle, solution = sudoku_generator.generate_sudoku_puzzle()
+    output = sudoku_generator.generate_sudoku_puzzle()
+    puzzle = output.puzzle
+    solution = output.solution
 
     # See that puzzle only has 1 solution
     num_solutions = sudoku_generator.get_number_of_solutions(board=puzzle)
