@@ -1,11 +1,10 @@
 import numpy as np
 
-from typing import Optional, List, Union
+from typing import Optional, List
 from nptyping import NDArray
 from pydantic import BaseModel
 from enum import Enum
 from random import shuffle
-from tqdm import tqdm
 
 from sudoku.utils import get_child
 from sudoku import SudokuSolver, SudokuValidator
@@ -25,6 +24,11 @@ class SudokuPuzzle(BaseModel):
 class SudokuGenerator:
 
     def get_non_empty_cells(self, board: NDArray) -> List[tuple]:
+        """
+        Convenience method for retrieving all coordinates
+        corresponding to non-empty cells.
+        Note that a cell is empty if it holds the value 0.
+        """
         nrows, ncols = board.shape
         result = [
             (x, y) for x in range(0, nrows)
@@ -33,68 +37,59 @@ class SudokuGenerator:
         ]
         return result
 
-    def solve_sudoku(
+    def get_number_of_solutions(
         self,
         board: NDArray,
-        node: tuple = (0, 0),
-        pbar: Optional[tqdm] = None,
-        randomize: Optional[bool] = False
-    ) -> Union[None, NDArray]:
+        node: tuple = (0, 0)
+    ) -> int:
         """
-        Method for solving a sudoku board.
+        Method for counting number of solutions of a sudoku board.
 
         Returns
-            An np.array, if solution is found
-            None, if no solution is found
+            int, number of solutions
         """
-        if pbar is not None:
-            pbar.update(1)
+        count = 0
 
-        # Return board if board is complete
-        if SudokuValidator.is_complete(board):
-            return board
+        def _exhaustive_search(board=board, node=node) -> None:
+            nonlocal count
 
-        # Shuffle board numbers if specified
-        board_numbers = [i for i in range(1, 10)]
-        if randomize:
-            shuffle(board_numbers)
+            # Return board if board is complete
+            if SudokuValidator.is_complete(board):
+                count += 1
+                return
 
-        # if node is already filled (one of the nodes starting with a value),
-        # skip directly to next child node
-        # else fill current cell with a valid value
-        # before going to next child node
-        if board[node] != 0:
-            return self.solve_sudoku(
-                    board=board,
-                    node=get_child(node),
-                    pbar=pbar,
-                    randomize=randomize
-            )
-        else:
-            for i in board_numbers:
-                # if value 'i' is valid then proceed with value 'i'
-                # else try next incremented value
-                if SudokuValidator.value_is_valid(
-                    board=board,
-                    node=node,
-                    node_value=i
-                ):
-                    board[node] = i
-
-                    # Proceed further with valid value
-                    # and return board if solution is found
-                    result = self.solve_sudoku(
+            # if node is already filled (one of the nodes starting with a value),
+            # skip directly to next child node
+            # else fill current cell with a valid value
+            # before going to next child node
+            if board[node] != 0:
+                return _exhaustive_search(
                         board=board,
                         node=get_child(node),
-                        pbar=pbar,
-                        randomize=randomize
-                    )
-                    if result is not None:
-                        return result
+                )
+            else:
+                for i in range(1, 10):
+                    # if value 'i' is valid then proceed with value 'i'
+                    # else try next incremented value
+                    if SudokuValidator.value_is_valid(
+                        board=board,
+                        node=node,
+                        node_value=i
+                    ):
+                        board[node] = i
 
-                # reset cell to 0 for next increment of 'i'
-                board[node] = 0
-        return None
+                        # Proceed further with valid value
+                        # and return board if solution is found
+                        _exhaustive_search(
+                            board=board,
+                            node=get_child(node),
+                        )
+
+                    # reset cell to 0 for next increment of 'i'
+                    board[node] = 0
+            return
+        _ = _exhaustive_search(board=board, node=node)
+        return count
 
     def create_puzzle(self, board: NDArray, difficulty: SudokuLevel):
         puzzle = board.copy()
