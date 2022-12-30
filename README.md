@@ -1,19 +1,19 @@
 # SudokuSolver
 For computing a solution to any sudoku board.
 
-## Required libraries
-- numpy
-- pytest
-- nptyping
-
 ## How to use the repo
 
 ### Installation
 In the repo-folder, run:<br>
-<code>make setup</code>
+```bash
+cd core/
+make setup
+```
 
-To see that everything has been installed correctly, run:<br>
-<code>pytest core/tests/</code><br>
+To see that everything has been installed correctly, run from the root of the repository:<br>
+```bash
+pytest core/tests/
+```
 You should see that all tests passes.
 
 ### Running SudokuSolver from terminal
