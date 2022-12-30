@@ -122,7 +122,7 @@ class SudokuSolver:
         Method to 'foresee' whether node_value will result in
         a valid board or not.
         """
-        if node_value > 9 or self.original_board[node] != 0:
+        if node_value > 9 or board[node] != 0:
             return False
         copied_board = board.copy()
         copied_board[node] = node_value
