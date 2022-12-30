@@ -1,6 +1,7 @@
 import pytest
 import numpy as np
 from sudoku.generator import SudokuGenerator
+from sudoku.solver import SudokuSolver
 
 
 @pytest.mark.parametrize('board, expected_total_solutions', [
@@ -51,3 +52,17 @@ def test_get_number_of_solutions(board, expected_total_solutions):
 
     # See that we get expected number of solutions
     assert result == expected_total_solutions
+
+
+def test_generate_sudoku_puzzle():
+    sudoku_generator = SudokuGenerator()
+    puzzle, solution = sudoku_generator.generate_sudoku_puzzle()
+
+    # See that puzzle only has 1 solution
+    num_solutions = sudoku_generator.get_number_of_solutions(board=puzzle)
+    assert num_solutions == 1
+
+    # See that solution is correctly solved by sudoku solver
+    solver = SudokuSolver(puzzle)
+    result = solver.solve_sudoku(solver.original_board)
+    assert (result == solution).all()

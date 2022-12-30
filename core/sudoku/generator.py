@@ -99,17 +99,15 @@ class SudokuGenerator:
             shuffle(non_empty_cells)
             row, col = non_empty_cells.pop()
 
+            old_value = puzzle[row, col]
             puzzle[row, col] = 0
 
             candidate = puzzle.copy()
-            solved_candidate = self.solve_sudoku(
-                board=candidate,
-                randomize=True
-            )
+            num_solutions = self.get_number_of_solutions(board=candidate)
 
-            # If the solution is the same, we keep the puzzle
-            if (solved_candidate != board).any():
-                puzzle[row, col] = board[row, col]
+            # If there is no unique solution, remove another value instead.
+            if num_solutions != 1:
+                puzzle[row, col] = old_value
                 continue
 
             num_empty_cells -= 1
