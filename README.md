@@ -12,7 +12,7 @@ The sudoku solver has a frontend web application that can easily be setup locall
 ```bash
 make compose-docker
 ```
-Note that, it is required to have `Docker` installed on your computer.
+Note that, it is required to have `Docker` installed on your computer. When successfully setup, the frontend application will be hosted on http://localhost:8080/ and backend server will be hosted on http://localhost:5000/.
 
 ## Installation in Python
 In the repository folder, run:<br>
