@@ -47,6 +47,10 @@ from sudoku.solver import SudokuSolver
 
 ])
 def test_get_number_of_solutions(board, expected_total_solutions):
+    """
+    Test that the expected number of solutions is retrieved
+    with SudokuGenerate.get_number_of_solutions.
+    """
     sudoku_generator = SudokuGenerator()
     result = sudoku_generator.get_number_of_solutions(board=board)
 
@@ -55,6 +59,10 @@ def test_get_number_of_solutions(board, expected_total_solutions):
 
 
 def test_generate_sudoku_puzzle():
+    """
+    Test SudokuGenerate.generate_sudoku_puzzle is
+    generating puzzles with a unique solution.
+    """
     sudoku_generator = SudokuGenerator()
     output = sudoku_generator.generate_sudoku_puzzle()
     puzzle = output.puzzle
