@@ -12,11 +12,14 @@
         </tbody>
       </table>
       <hr><br>
-      <div class="row">
-        <div class="col-sm-12" align="center">
-            <button @click="solveBoard" class="btn btn-success btn-sm"> Solve board </button>
-            <button @click="randomizeBoard" class="btn btn-primary btn-sm"> Randomize </button>
-            <button @click="resetBoard" class="btn btn-primary btn-danger"> Reset </button>
+      <div class="sudokurow">
+        <div>
+            <button @click="solveBoard" class="btn btn-success btn-sm"> Solve puzzle </button>
+            <button @click="randomizeBoard" class="btn btn-primary btn-sm"> New puzzle </button>
+            <button @click="resetBoard" class="btn btn-primary btn-danger"> Reset puzzle </button>
+        </div>
+        <div style="margin-top:25px">
+            <button @click="cleanBoard" class="btn btn-outline-danger"> Clean board </button>
         </div>
       </div>
     </div>
@@ -91,6 +94,10 @@ export default {
           console.log('Resetting...');
           Object.assign(this.$data, {grid: this.initial_grid});
           },
+        cleanBoard(){
+          console.log('Cleaning...');
+          Object.assign(this.$data, {grid: initial_grid});
+        }
     }
 }
 </script>
@@ -126,5 +133,9 @@ td {
 
 td.selected {
   background-color: bisque;
+}
+
+.sudokurow {
+  display: inline;
 }
 </style>
