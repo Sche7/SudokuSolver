@@ -14,11 +14,11 @@
       <hr><br>
       <div class="sudokurow">
         <div>
-            <button @click="solveBoard" class="btn btn-success btn-sm"> Solve puzzle </button>
-            <button @click="randomizeBoard" class="btn btn-primary btn-sm"> New puzzle </button>
-            <button @click="resetBoard" class="btn btn-primary btn-danger"> Reset puzzle </button>
+            <button @click="solveBoard" class="btn btn-success btn-sm" style="block-size:50px;margin-right: 10px;"> Solve puzzle </button>
+            <button @click="randomizeBoard" class="btn btn-primary btn-sm" style="block-size:50px"> New puzzle </button>
         </div>
         <div style="margin-top:25px">
+            <button @click="resetBoard" class="btn btn-primary btn-danger" style="margin-right:10px;"> Reset puzzle </button>
             <button @click="cleanBoard" class="btn btn-outline-danger"> Clean board </button>
         </div>
       </div>
