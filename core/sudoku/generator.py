@@ -47,7 +47,7 @@ class SudokuGenerator:
             for y in range(0, ncols)
             if board[x, y] > 0
         ]
-        return result
+        return result 
 
     def get_number_of_solutions(
         self,
@@ -65,7 +65,8 @@ class SudokuGenerator:
         def _exhaustive_search(board=board, node=node) -> None:
             nonlocal count
 
-            # Return board if board is complete
+            # Break recursion if board is complete
+            # and add one to count.
             if SudokuValidator.is_complete(board):
                 count += 1
                 return
@@ -80,6 +81,10 @@ class SudokuGenerator:
                         node=get_child(node),
                 )
             else:
+
+                # Exhaustive search where every single value is "tested".
+                # We do not break the loop unless a completed board has been reached
+                # or the for-loop has checked the last element.
                 for i in range(1, 10):
                     # if value 'i' is valid then proceed with value 'i'
                     # else try next incremented value
