@@ -35,7 +35,7 @@ class SudokuGenerator:
     solution to the generated puzzle.
     """
 
-    def get_clues(self, board: NDArray) -> List[tuple]:
+    def _get_clues(self, board: NDArray) -> List[tuple]:
         """
         Convenience method for retrieving all coordinates
         corresponding to non-empty cells, AKA clues on a Sudoku board.
@@ -120,7 +120,7 @@ class SudokuGenerator:
         puzzle = board.copy()
 
         # Initiate number of clues
-        clues = self.get_clues(puzzle)
+        clues = self._get_clues(puzzle)
         while len(clues) > difficulty.value:
             row, col = clues.pop()
 
@@ -136,7 +136,7 @@ class SudokuGenerator:
                 continue
 
             # Get new list of clues and do shuffle
-            clues = self.get_clues(puzzle)
+            clues = self._get_clues(puzzle)
             shuffle(clues)
 
         return puzzle
