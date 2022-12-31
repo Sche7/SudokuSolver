@@ -11,9 +11,14 @@ from sudoku import SudokuSolver, SudokuValidator
 
 
 class SudokuLevel(Enum):
-    EASY = 20
-    MEDIUM = 30
-    HARD = 40
+    """
+    Difficulty of a Sudoku puzzle is
+    specified by the number of clues in the
+    puzzle.
+    """
+    EASY = 55
+    MEDIUM = 45
+    HARD = 35
 
 
 @dataclass(frozen=True)
@@ -23,11 +28,17 @@ class SudokuPuzzle:
 
 
 class SudokuGenerator:
+    """
+    Generate a Sudoku puzzle with specified number of
+    non-empty cells, AKA clues.
+    The Sudoku generator makes sure there is only one unique
+    solution to the generated puzzle.
+    """
 
-    def get_non_empty_cells(self, board: NDArray) -> List[tuple]:
+    def get_clues(self, board: NDArray) -> List[tuple]:
         """
         Convenience method for retrieving all coordinates
-        corresponding to non-empty cells.
+        corresponding to non-empty cells, AKA clues on a Sudoku board.
         Note that a cell is empty if it holds the value 0.
         """
         nrows, ncols = board.shape
@@ -92,13 +103,26 @@ class SudokuGenerator:
         _ = _exhaustive_search(board=board, node=node)
         return count
 
-    def create_puzzle(self, board: NDArray, difficulty: SudokuLevel):
+    def create_puzzle(self, board: NDArray, difficulty: SudokuLevel) -> NDArray:
+        """
+        Creates a puzzle by removing values from a Sudoku board
+        while checking that there is always only one unique solution.
+
+        Parameters
+        ------
+        board: NDArray
+            Board to remove values from. This can be a completed Sudoku board.
+        difficulty: SudokuLevel
+            The difficulty specifying the number of clues in the final puzzle.
+            Note that the harder the difficulty, the longer it takes to generate
+            a valid puzzle with a unique solution.
+        """
         puzzle = board.copy()
-        num_empty_cells = difficulty.value
-        while num_empty_cells > 0:
-            non_empty_cells = self.get_non_empty_cells(puzzle)
-            shuffle(non_empty_cells)
-            row, col = non_empty_cells.pop()
+
+        # Initiate number of clues
+        clues = self.get_clues(puzzle)
+        while len(clues) > difficulty.value:
+            row, col = clues.pop()
 
             old_value = puzzle[row, col]
             puzzle[row, col] = 0
@@ -111,7 +135,10 @@ class SudokuGenerator:
                 puzzle[row, col] = old_value
                 continue
 
-            num_empty_cells -= 1
+            # Get new list of clues and do shuffle
+            clues = self.get_clues(puzzle)
+            shuffle(clues)
+
         return puzzle
 
     def generate_sudoku_puzzle(
@@ -119,8 +146,14 @@ class SudokuGenerator:
         difficulty: Optional[SudokuLevel] = SudokuLevel.EASY
     ) -> SudokuPuzzle:
         """
-        Generate sudoku board
+        Generate Sudoku puzzle that has one unique solution.
 
+        Parameters
+        ------
+        difficulty: SudokuLevel
+            The difficulty specifying the number of clues in the final puzzle.
+            Note that the harder the difficulty, the longer it takes to generate
+            a valid puzzle with a unique solution.
         """
         # Initialize empty board
         board = np.zeros((9, 9), dtype=int)
@@ -133,7 +166,8 @@ class SudokuGenerator:
             randomize=True
         )
 
-        # Generate puzzle
+        # Generate puzzle by removing values in cells,
+        # while also keeping track on the number of solutions.
         puzzle = self.create_puzzle(complete_board, difficulty)
 
         return SudokuPuzzle(puzzle=puzzle, solution=complete_board)
