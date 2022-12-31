@@ -6,7 +6,7 @@ Welcome to my Sudoku solver! This repository includes:
 
 ## Run application from Docker
 
-<img src="https://user-images.githubusercontent.com/51048135/210067288-745e608c-c169-4d50-8cd3-89323937c1d9.gif" width="400"/>
+<img src="https://user-images.githubusercontent.com/51048135/210139098-51889891-1717-405a-9bd6-a4bf75249428.gif" width="400"/>
 
 The sudoku solver has a frontend web application that can easily be setup locally. From the repository folder, run:
 ```bash
