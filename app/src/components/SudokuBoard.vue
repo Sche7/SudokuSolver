@@ -18,7 +18,7 @@
             <button @click="solveBoard" class="btn btn-success btn-sm" style="block-size:50px;"> Solve puzzle </button>
         </div>
         <div style="margin-top:25px">
-            <button @click="resetBoard" class="btn btn-primary btn-danger" style="margin-right:10px;"> Reset puzzle </button>
+            <button @click="resetBoard" class="btn btn-outline-info" style="margin-right:10px;"> Reset puzzle </button>
             <button @click="cleanBoard" class="btn btn-outline-danger"> Clean board </button>
         </div>
       </div>
