@@ -35,7 +35,7 @@ def solve():
 
     # Run solver
     solver = SudokuSolver(board=np.array(data))
-    result = solver.run()
+    result = solver.run(randomize=True)
 
     if result is not None:
         result = result.tolist()

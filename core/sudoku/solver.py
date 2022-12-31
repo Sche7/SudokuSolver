@@ -97,7 +97,7 @@ class SudokuSolver:
         board = np.array(output, dtype=int)
         return cls(board=board, input_file=input_file)
 
-    def run(self) -> Union[None, NDArray]:
+    def run(self, randomize: Optional[bool] = False) -> Union[None, NDArray]:
         """
         Method for running the SudokuSolver.
 
@@ -123,4 +123,8 @@ class SudokuSolver:
             desc=f'Computing solution{input_file}',
             leave=False
         )
-        return self.solve_sudoku(board=self.original_board, pbar=pbar)
+        return self.solve_sudoku(
+            board=self.original_board,
+            pbar=pbar,
+            randomize=randomize
+        )
