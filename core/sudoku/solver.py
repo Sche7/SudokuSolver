@@ -10,6 +10,9 @@ from sudoku.validator import SudokuValidator
 
 
 class SudokuSolver:
+    """
+    Solves any solvable Sudoku puzzle (even those with multiple solutions).
+    """
 
     def __init__(self, board: NDArray, input_file: Optional[str] = None):
         self.original_board = board.astype(int)
