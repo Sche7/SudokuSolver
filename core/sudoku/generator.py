@@ -47,7 +47,7 @@ class SudokuGenerator:
             for y in range(0, ncols)
             if board[x, y] > 0
         ]
-        return result 
+        return result
 
     def get_number_of_solutions(
         self,
