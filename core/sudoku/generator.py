@@ -141,6 +141,7 @@ class SudokuGenerator:
                 continue
 
             # Get new list of clues and do shuffle
+            # to lower the chances of getting the same order of coordinates.
             clues = self._get_clues(puzzle)
             shuffle(clues)
 
