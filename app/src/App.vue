@@ -7,7 +7,7 @@
         integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R"
         crossorigin="anonymous"
       >
-      <b><p>Welcome to Steven's Sudoku Solver</p></b>
+      <h1><b>Welcome to Steven's Sudoku Solver</b></h1>
       <hr><br>
         <SudokuBoard/>
     </div>
