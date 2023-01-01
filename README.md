@@ -3,6 +3,7 @@
 Welcome to my Sudoku solver! This repository includes:
 - Methods for computing the solution of a sudoku board
 - Methods for generating a sudoku board with a unique solution
+- Simple web application available for those you would like to interact with the Sudoku solver from a more user friendly interface.
 
 ## Run application from Docker
 
