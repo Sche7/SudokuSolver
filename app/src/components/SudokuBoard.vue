@@ -18,7 +18,7 @@
                 v-for="(cell, idy) in row"
                 :key="idy"
                 @click="setSelected(idx, idy)"
-                :style="[selected[0] == idx && selected[1] == idy ? {'background-color':'#28a745'} : {}]"
+                :style="[selected[0] == idx && selected[1] == idy ? {'background-color':'#cccccc'} : {}]"
               >
                 {{ greaterThanZero(grid[idx][idy]) }}
               </td>
