@@ -9,8 +9,8 @@
         </tr>
         </tbody>
       </table>
-      <div align="center" style="margin-top:10px">
-          <div class="btn-group me-2" role="group">
+      <div align="center" style="margin-top: 10px;">
+          <div class="btn-group" role="group">
             <button type="button" class="btn btn-secondary" @click="setNumber(1)">1</button>
             <button type="button" class="btn btn-secondary" @click="setNumber(2)">2</button>
             <button type="button" class="btn btn-secondary" @click="setNumber(3)">3</button>
@@ -20,6 +20,9 @@
             <button type="button" class="btn btn-secondary" @click="setNumber(7)">7</button>
             <button type="button" class="btn btn-secondary" @click="setNumber(8)">8</button>
             <button type="button" class="btn btn-secondary" @click="setNumber(9)">9</button>
+          </div>
+          <div style="margin-left:25px;display: inline;">
+            <button type="button" class="btn btn-outline-info" @click="saveBoardState">Save</button>
           </div>
       </div>
       <hr><br>
@@ -56,7 +59,7 @@ export default {
     data() {
       return {
         grid: JSON.parse(JSON.stringify(initial_grid)),
-        initial_grid: initial_grid,
+        saved_grid: initial_grid,
         selected: [0, 0]
       }
     },
@@ -77,7 +80,7 @@ export default {
           axios.get(path)
           .then ((res) => {
             const result = res.data;
-            Object.assign(this.$data, {grid: result, initial_grid: result});
+            Object.assign(this.$data, {grid: result, saved_grid: result});
           })
           .catch((err) => {
             console.error(err);
@@ -108,12 +111,16 @@ export default {
           }
         },
         resetBoard(){
-          console.log('Resetting...');
-          Object.assign(this.$data, {grid: this.initial_grid});
+          console.log('Resetting board...');
+          Object.assign(this.$data, {grid: this.saved_grid});
           },
         cleanBoard(){
-          console.log('Cleaning...');
+          console.log('Cleaning board...');
           Object.assign(this.$data, {grid: initial_grid});
+        },
+        saveBoardState() {
+          console.log('Saving board state...');
+          Object.assign(this.$data, {saved_grid: this.grid});
         }
     }
 }
