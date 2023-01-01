@@ -1,11 +1,11 @@
 <template>
     <div align="center">
       <div style="display:inline-flex;">
-        <div style="block-size:25px;margin-right: 100px;">
-          <div style="margin-bottom: 10px;">
+        <div style="block-size:25px;margin-right: 50px;">
+          <div style="margin-bottom: 10px;margin-top: 10px;">
             <button @click="randomizeBoard" class="btn btn-primary btn-sm"> New puzzle </button>
           </div>
-          <div style="margin-top: 300px;">
+          <div>
             <button @click="solveBoard" class="btn btn-success btn-sm"> Solve puzzle </button>
           </div>
         </div>
@@ -39,7 +39,7 @@
           <div style="margin-left:25px;display: inline;">
             <button type="button" class="btn btn-outline-success" @click="saveBoardState">Save</button>
             <button type="button" class="btn btn-outline-info" style="margin-left:10px;" @click="resetBoard">Load</button>
-            <button type="button" class="btn btn-outline-warning" style="margin-left:10px;" @click="cleanBoard" >Clear</button>
+            <button type="button" class="btn btn-outline-secondary" style="margin-left:10px;" @click="cleanBoard" >Clear</button>
           </div>
       </div>
       <hr><br>
@@ -67,7 +67,7 @@ export default {
       return {
         grid: JSON.parse(JSON.stringify(initial_grid)),
         saved_grid: initial_grid,
-        selected: [0, 0]
+        selected: [0, 0],
       }
     },
     methods : {
