@@ -1,16 +1,31 @@
 <template>
     <div align="center">
-      <table>
-        <tbody>
-        <tr v-for="(row, idx) in grid" :key="idx">
-          <td v-for="(cell, idy) in row" :key="idy" @click="setSelected(grid[idx][idy], idx, idy)">
-            {{ greaterThanZero(grid[idx][idy]) }}
-          </td>
-        </tr>
-        </tbody>
-      </table>
+      <div style="display:inline-flex;">
+        <div style="block-size:25px;margin-right: 100px;">
+          <div style="margin-bottom: 10px;">
+            <button @click="randomizeBoard" class="btn btn-primary btn-sm"> New puzzle </button>
+          </div>
+          <div style="margin-top: 300px;">
+            <button @click="solveBoard" class="btn btn-success btn-sm"> Solve puzzle </button>
+          </div>
+        </div>
+
+        <div>
+          <table>
+            <tbody>
+            <tr v-for="(row, idx) in grid" :key="idx">
+              <td v-for="(cell, idy) in row" :key="idy" @click="setSelected(idx, idy)">
+                {{ greaterThanZero(grid[idx][idy]) }}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div align="center" style="margin-top: 10px;">
           <div class="btn-group" role="group">
+            <button type="button" class="btn btn-secondary" @click="setNumber(0)">Blank</button>
             <button type="button" class="btn btn-secondary" @click="setNumber(1)">1</button>
             <button type="button" class="btn btn-secondary" @click="setNumber(2)">2</button>
             <button type="button" class="btn btn-secondary" @click="setNumber(3)">3</button>
@@ -22,20 +37,12 @@
             <button type="button" class="btn btn-secondary" @click="setNumber(9)">9</button>
           </div>
           <div style="margin-left:25px;display: inline;">
-            <button type="button" class="btn btn-outline-info" @click="saveBoardState">Save</button>
+            <button type="button" class="btn btn-outline-success" @click="saveBoardState">Save</button>
+            <button type="button" class="btn btn-outline-info" style="margin-left:10px;" @click="resetBoard">Load</button>
+            <button type="button" class="btn btn-outline-warning" style="margin-left:10px;" @click="cleanBoard" >Clear</button>
           </div>
       </div>
       <hr><br>
-      <div class="sudokurow">
-        <div>
-            <button @click="randomizeBoard" class="btn btn-primary btn-sm" style="block-size:50px;margin-right: 10px;"> New puzzle </button>
-            <button @click="solveBoard" class="btn btn-success btn-sm" style="block-size:50px;"> Solve puzzle </button>
-        </div>
-        <div style="margin-top:25px">
-            <button @click="resetBoard" class="btn btn-outline-info" style="margin-right:10px;"> Reset puzzle </button>
-            <button @click="cleanBoard" class="btn btn-outline-danger"> Clean board </button>
-        </div>
-      </div>
     </div>
 </template>
 
@@ -92,7 +99,7 @@ export default {
           if(!typed) return;
           console.log(typed);
         },
-        setSelected(cell, x, y) {
+        setSelected(x, y) {
           this.selected = [x , y]
         },
         setNumber(number) {
@@ -159,7 +166,4 @@ td.selected {
   background-color: bisque;
 }
 
-.sudokurow {
-  display: inline;
-}
 </style>
