@@ -83,7 +83,7 @@ export default {
             if(result.length == 0){
               Object.assign(this.$data, {error: 'Solution does not exist.'})
             } else {
-              Object.assign(this.$data, {grid: result})
+              Object.assign(this.$data, {grid: result, error: null})
             }
           })
           .catch((err) => {
@@ -95,7 +95,7 @@ export default {
           axios.get(path)
           .then ((res) => {
             const result = res.data;
-            Object.assign(this.$data, {grid: result});
+            Object.assign(this.$data, {grid: result, error: null});
           })
           .catch((err) => {
             console.error(err);
@@ -131,7 +131,7 @@ export default {
           },
         cleanBoard(){
           console.log('Cleaning board...');
-          Object.assign(this.$data, {grid: initial_grid});
+          Object.assign(this.$data, {grid: initial_grid, error: null});
         },
         saveBoardState() {
           console.log('Saving board state...');
