@@ -14,7 +14,12 @@
           <table>
             <tbody>
             <tr v-for="(row, idx) in grid" :key="idx">
-              <td v-for="(cell, idy) in row" :key="idy" @click="setSelected(idx, idy)">
+              <td
+                v-for="(cell, idy) in row"
+                :key="idy"
+                @click="setSelected(idx, idy)"
+                :style="[selected[0] == idx && selected[1] == idy ? {'background-color':'#28a745'} : {}]"
+              >
                 {{ greaterThanZero(grid[idx][idy]) }}
               </td>
             </tr>
@@ -70,7 +75,7 @@ export default {
       return {
         grid: JSON.parse(JSON.stringify(initial_grid)),
         saved_grid: initial_grid,
-        selected: [0, 0],
+        selected: [null, null],
         error: null,
       }
     },
