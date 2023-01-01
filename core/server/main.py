@@ -37,8 +37,11 @@ def solve():
     solver = SudokuSolver(board=np.array(data))
     result = solver.run(randomize=True)
 
+    # Return empty list if solution doesn't exist
     if result is not None:
         result = result.tolist()
+    else:
+        result = []
 
     return result
 
@@ -48,7 +51,6 @@ def randomize():
     sudoku_generator = SudokuGenerator()
     output = sudoku_generator.generate_sudoku_puzzle(SudokuLevel.MEDIUM)
 
-    print(output.solution)
     return output.puzzle.tolist()
 
 
