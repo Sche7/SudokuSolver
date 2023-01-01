@@ -55,7 +55,7 @@ export default {
     name: 'SudokuBoard',
     data() {
       return {
-        grid: initial_grid,
+        grid: JSON.parse(JSON.stringify(initial_grid)),
         initial_grid: initial_grid,
         selected: [0, 0]
       }
