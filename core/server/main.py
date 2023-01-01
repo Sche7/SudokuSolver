@@ -46,7 +46,7 @@ def solve():
 @app.route("/randomize", methods=["GET"])
 def randomize():
     sudoku_generator = SudokuGenerator()
-    output = sudoku_generator.generate_sudoku_puzzle(SudokuLevel.HARD)
+    output = sudoku_generator.generate_sudoku_puzzle(SudokuLevel.MEDIUM)
 
     print(output.solution)
     return output.puzzle.tolist()
