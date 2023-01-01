@@ -3,14 +3,25 @@
       <table>
         <tbody>
         <tr v-for="(row, idx) in grid" :key="idx">
-          <td v-for="(cell, idy) in row" :key="idy" 
-          :class="{ locked: grid[idx][idy].locked, selected:grid[idx][idy].selected }"
-          @click="setSelected(grid[idx][idy], idx, idy)">
+          <td v-for="(cell, idy) in row" :key="idy" @click="setSelected(grid[idx][idy], idx, idy)">
             {{ greaterThanZero(grid[idx][idy]) }}
           </td>
         </tr>
         </tbody>
       </table>
+      <div align="center" style="margin-top:10px">
+          <div class="btn-group me-2" role="group">
+            <button type="button" class="btn btn-secondary" @click="setNumber(1)">1</button>
+            <button type="button" class="btn btn-secondary" @click="setNumber(2)">2</button>
+            <button type="button" class="btn btn-secondary" @click="setNumber(3)">3</button>
+            <button type="button" class="btn btn-secondary" @click="setNumber(4)">4</button>
+            <button type="button" class="btn btn-secondary" @click="setNumber(5)">5</button>
+            <button type="button" class="btn btn-secondary" @click="setNumber(6)">6</button>
+            <button type="button" class="btn btn-secondary" @click="setNumber(7)">7</button>
+            <button type="button" class="btn btn-secondary" @click="setNumber(8)">8</button>
+            <button type="button" class="btn btn-secondary" @click="setNumber(9)">9</button>
+          </div>
+      </div>
       <hr><br>
       <div class="sudokurow">
         <div>
@@ -45,7 +56,8 @@ export default {
     data() {
       return {
         grid: initial_grid,
-        initial_grid: initial_grid
+        initial_grid: initial_grid,
+        selected: [0, 0]
       }
     },
     methods : {
@@ -78,11 +90,14 @@ export default {
           console.log(typed);
         },
         setSelected(cell, x, y) {
-          console.log(cell)
-          console.log(x)
-          console.log(y)
-          console.log(this.grid)
+          this.selected = [x , y]
         },
+        setNumber(number) {
+          const x = this.selected[0]
+          const y = this.selected[1]
+          this.grid[x][y] = number
+        }
+        ,
         greaterThanZero(cell){
           if (cell > 0) {
               return cell.toString();
