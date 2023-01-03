@@ -44,7 +44,7 @@ def solve():
     else:
         result = []
 
-    return result
+    return jsonify(solution=result, puzzle=data)
 
 
 @app.route("/randomize", methods=["GET"])
@@ -52,7 +52,7 @@ def randomize():
     sudoku_generator = SudokuGenerator()
     output = sudoku_generator.generate_sudoku_puzzle(SudokuLevel.MEDIUM)
 
-    return output.puzzle.tolist()
+    return jsonify(puzzle=output.puzzle.tolist())
 
 
 @app.route("/validate", methods=["POST"])

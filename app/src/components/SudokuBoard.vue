@@ -99,7 +99,7 @@ export default {
               })
             } else {
               Object.assign(this.$data, {
-                grid: result,
+                grid: result.solution,
                 error: null,
                 success: 'Solution found!'
               })
@@ -114,7 +114,7 @@ export default {
           axios.get(path)
           .then ((res) => {
             const result = res.data;
-            Object.assign(this.$data, {grid: result, error: null, success: null});
+            Object.assign(this.$data, {grid: result.puzzle, error: null, success: null});
           })
           .catch((err) => {
             console.error(err);
