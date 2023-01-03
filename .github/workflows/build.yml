@@ -46,3 +46,4 @@ jobs:
           name: Upload Coverage to Codecov
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           files: ./core/coverage.xml
+          verbose: true
