@@ -20,6 +20,10 @@ def client() -> Flask:
 
 @pytest.fixture
 def request_data() -> SudokuPuzzle:
+    """
+    Fixture that provides a Sudoku puzzle
+    along with the solution.
+    """
     puzzle = np.array([
         [0, 0, 9, 0, 0, 0, 4, 6, 3],
         [0, 0, 6, 3, 4, 0, 5, 2, 9],
@@ -48,37 +52,71 @@ def request_data() -> SudokuPuzzle:
 
 
 def test_greeting(client: Flask):
+    """
+    Test greeting endpoint
+    """
     response: Response = client.get('/')
     assert response.status_code == 200
     assert response.data.decode("utf-8") == 'Backend server is online!'
 
 
 def test_solve(client: Flask, request_data: SudokuPuzzle):
+    """
+    Test /solve endpoint
+    """
+    # Make data into raw json string dump and make request
     payload = json.dumps({'data': request_data.puzzle.tolist()})
     response: Response = client.post(
         '/solve',
         data=payload
     )
+
+    # Convert string to python dictionary
     response_dict = json.loads(response.data.decode("utf-8"))
+
+    # See that request was successful
     assert response.status_code == 200
+
+    # See that returned solution is indeed correct
     assert (np.array(response_dict['solution']) == request_data.solution).all()
 
 
 def test_randomize(client: Flask):
+    """
+    Test /randomize endpoint
+    """
     response: Response = client.get('/randomize')
 
+    # Convert string to python dictionary
     response_dict = json.loads(response.data.decode("utf-8"))
+
+    # Get resulting puzzle from request
     response_puzzle = np.array(response_dict['puzzle'])
+
+    # See that request was successful
     assert response.status_code == 200
+
+    # See that resulting puzzle is a valid Sudoku puzzle
     assert SudokuValidator.is_valid(response_puzzle)
 
 
 def test_validate(client: Flask, request_data: SudokuPuzzle):
+    """
+    Test /validate endpoint
+    """
+    # Make data into raw json string dump and make request
     payload = json.dumps({'data': request_data.puzzle.tolist()})
     response: Response = client.post(
         '/validate',
         data=payload
     )
+
+    # Convert string to python dictionary
     response_dict = json.loads(response.data.decode("utf-8"))
+
+    # See that request was successful
     assert response.status_code == 200
+
+    # See that the expected valid puzzle is indeed evaluated
+    # as valid by endpoint.
     assert response_dict['valid']
