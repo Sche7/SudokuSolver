@@ -4,6 +4,7 @@ import numpy as np
 from flask import Flask, request
 from flask_cors import CORS
 from sudoku.solver import SudokuSolver
+from sudoku.validator import SudokuValidator
 from sudoku.generator import SudokuGenerator, SudokuLevel
 
 
@@ -52,6 +53,16 @@ def randomize():
     output = sudoku_generator.generate_sudoku_puzzle(SudokuLevel.MEDIUM)
 
     return output.puzzle.tolist()
+
+
+@app.route("/validate", methods=["POST"])
+def validate():
+    # Fetch request data
+    data = json.loads(request.data).get('data')
+
+    # Run solver
+    valid = SudokuValidator.is_valid(board=np.array(data))
+    return valid
 
 
 if __name__ == "__main__":
