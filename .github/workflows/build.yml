@@ -46,4 +46,4 @@ jobs:
         working-directory: ./core
         run: codecov/codecov-action@v2
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          CODECOV_TOKEN: ${{ CODECOV_TOKEN }}
