@@ -43,7 +43,7 @@ jobs:
 
       - name: Upload Coverage to Codecov
         working-directory: ./core
-        uses: codecov/codecov-action@v2
-        with:
+        run: codecov/codecov-action@v2
+        env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           files: /home/runner/coverage.xml
