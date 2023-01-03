@@ -44,6 +44,6 @@ jobs:
       - uses: codecov/codecov-action@v3.1.1
         with:
           name: Upload Coverage to Codecov
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./core/coverage.xml
           verbose: true
