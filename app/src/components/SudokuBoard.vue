@@ -5,11 +5,11 @@
           <div style="margin-bottom: 10px;margin-top: 10px;">
             <button @click="randomizeBoard" class="btn btn-primary btn-sm"> New puzzle </button>
           </div>
-          <div>
-            <button @click="solveBoard" class="btn btn-success btn-sm"> Solve puzzle </button>
+          <div style="margin-top: 220px;">
+            <button @click="validateBoard" class="btn btn-warning btn-sm"> Validate puzzle </button>
           </div>
           <div style="margin-bottom: 10px;margin-top: 10px;">
-            <button @click="validateBoard" class="btn btn-warning btn-sm"> Validate puzzle </button>
+            <button @click="solveBoard" class="btn btn-success btn-sm"> Solve puzzle </button>
           </div>
         </div>
 
