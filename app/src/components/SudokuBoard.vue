@@ -91,7 +91,7 @@ export default {
           const path = 'http://localhost:5000/solve';
           axios.post(path, {data: this.grid})
           .then ((res) => {
-            const result = res.data;
+            const result = res.data.solution;
             if(result.length == 0){
               Object.assign(this.$data, {
                 error: 'Solution does not exist.',
@@ -99,7 +99,7 @@ export default {
               })
             } else {
               Object.assign(this.$data, {
-                grid: result.solution,
+                grid: result,
                 error: null,
                 success: 'Solution found!'
               })
