@@ -45,6 +45,5 @@ jobs:
       - name: Upload Coverage to Codecov
         working-directory: ./core
         run: codecov/codecov-action@v2
-        environment: secrets
-        with:
-          token: ${{ CODECOV_TOKEN }}
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
