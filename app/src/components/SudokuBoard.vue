@@ -8,6 +8,9 @@
           <div>
             <button @click="solveBoard" class="btn btn-success btn-sm"> Solve puzzle </button>
           </div>
+          <div style="margin-bottom: 10px;margin-top: 10px;">
+            <button @click="validateBoard" class="btn btn-warning btn-sm"> Validate puzzle </button>
+          </div>
         </div>
 
         <div>
@@ -51,6 +54,9 @@
       <div class="alert alert-danger" v-if="error">
         {{ error }}
       </div>
+      <div class="alert alert-success" v-else-if="success">
+        {{ success }}
+      </div>
     </div>
 </template>
 
@@ -77,6 +83,7 @@ export default {
         saved_grid: initial_grid,
         selected: [null, null],
         error: null,
+        success: null
       }
     },
     methods : {
@@ -86,9 +93,16 @@ export default {
           .then ((res) => {
             const result = res.data;
             if(result.length == 0){
-              Object.assign(this.$data, {error: 'Solution does not exist.'})
+              Object.assign(this.$data, {
+                error: 'Solution does not exist.',
+                success: null
+              })
             } else {
-              Object.assign(this.$data, {grid: result, error: null})
+              Object.assign(this.$data, {
+                grid: result,
+                error: null,
+                success: 'Solution found!'
+              })
             }
           })
           .catch((err) => {
@@ -100,7 +114,22 @@ export default {
           axios.get(path)
           .then ((res) => {
             const result = res.data;
-            Object.assign(this.$data, {grid: result, error: null});
+            Object.assign(this.$data, {grid: result, error: null, success: null});
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+        },
+        validateBoard(){
+          const path = 'http://localhost:5000/validate';
+          axios.post(path, {data: this.grid})
+          .then ((res) => {
+            const result = res.data;
+            if(!result.valid){
+              Object.assign(this.$data, {error: 'Board is invalid.', success: null})
+            } else {
+              Object.assign(this.$data, {error: null, success: 'Board is valid!'})
+            }
           })
           .catch((err) => {
             console.error(err);
@@ -132,15 +161,28 @@ export default {
         },
         loadBoard(){
           console.log('Resetting board...');
-          Object.assign(this.$data, {grid: this.saved_grid, error: null});
+          Object.assign(this.$data, {
+            grid: this.saved_grid,
+            error: null, 
+            success: 'Successfully loaded board!'
+          })
           },
         cleanBoard(){
           console.log('Cleaning board...');
-          Object.assign(this.$data, {grid: initial_grid, error: null});
+          Object.assign(this.$data, {
+            grid:
+            initial_grid,
+            error: null,
+            success: 'Successfully cleaned board!'
+          });
         },
         saveBoardState() {
           console.log('Saving board state...');
-          Object.assign(this.$data, {saved_grid: this.grid});
+          Object.assign(this.$data, {
+            saved_grid: this.grid,
+            success: 'Successfully saved board!',
+            error: null
+          });
         },
     }
 }

@@ -1,7 +1,7 @@
 import json
 import numpy as np
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from sudoku.solver import SudokuSolver
 from sudoku.validator import SudokuValidator
@@ -62,7 +62,8 @@ def validate():
 
     # Run solver
     valid = SudokuValidator.is_valid(board=np.array(data))
-    return valid
+
+    return jsonify(valid=valid)
 
 
 if __name__ == "__main__":
