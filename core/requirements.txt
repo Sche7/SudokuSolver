@@ -1,6 +1,8 @@
 numpy
 ipython
 pytest
+pytest-cov
+coverage
 nptyping
 tqdm
 flask
