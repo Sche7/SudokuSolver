@@ -6,3 +6,4 @@ venv
 tmp
 build/
 **/node_modules
+.coverage
