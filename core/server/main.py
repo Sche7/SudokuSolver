@@ -52,7 +52,10 @@ def randomize():
     sudoku_generator = SudokuGenerator()
     output = sudoku_generator.generate_sudoku_puzzle(SudokuLevel.MEDIUM)
 
-    return jsonify(puzzle=output.puzzle.tolist())
+    return jsonify(
+        puzzle=output.puzzle.tolist(),
+        solution=output.solution.tolist()
+    )
 
 
 @app.route("/validate", methods=["POST"])
