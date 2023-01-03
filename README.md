@@ -1,4 +1,7 @@
-# SudokuSolver [![codecov](https://codecov.io/gh/Sche7/SudokuSolver/branch/main/graph/badge.svg?token=JCXICBPNVZ)](https://codecov.io/gh/Sche7/SudokuSolver)
+[![codecov](https://codecov.io/gh/Sche7/SudokuSolver/branch/main/graph/badge.svg?token=JCXICBPNVZ)](https://codecov.io/gh/Sche7/SudokuSolver)
+
+
+# SudokuSolver
 
 Welcome to my Sudoku solver! This repository includes:
 - Methods for computing the solution of a sudoku board
