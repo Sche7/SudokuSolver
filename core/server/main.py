@@ -60,7 +60,7 @@ def validate():
     # Fetch request data
     data = json.loads(request.data).get('data')
 
-    # Run solver
+    # Run validation
     valid = SudokuValidator.is_valid(board=np.array(data))
 
     return jsonify(valid=valid)
