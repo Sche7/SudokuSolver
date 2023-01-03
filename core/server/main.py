@@ -66,7 +66,7 @@ def validate():
     # Run validation
     valid = SudokuValidator.is_valid(board=np.array(data))
 
-    return jsonify(valid=valid)
+    return jsonify(valid=valid, puzzle=data)
 
 
 if __name__ == "__main__":
