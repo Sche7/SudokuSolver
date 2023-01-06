@@ -134,8 +134,7 @@ export default {
           let grid_copy = JSON.parse(JSON.stringify(this.grid))
           grid_copy[x][y] = number
           Object.assign(this.$data, {grid: grid_copy})
-        }
-        ,
+        },
         greaterThanZero(cell){
           return cell > 0 ? cell.toString() : ""
         },
