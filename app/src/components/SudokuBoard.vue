@@ -128,12 +128,6 @@ export default {
             console.error(err);
           })
         },
-        pickNumber(e) {
-          let typed = parseInt(String.fromCharCode(e.keyCode), 10);
-          // if it was NaN, split out
-          if(!typed) return;
-          console.log(typed);
-        },
         setSelected(x, y) {
           this.selected = [x , y]
         },
