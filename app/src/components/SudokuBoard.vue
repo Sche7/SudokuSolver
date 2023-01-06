@@ -188,16 +188,8 @@ table tbody tr:nth-child(3), table tbody tr:nth-child(6) {
   border-bottom: 2px solid;
 }
 
-td.locked {
-  cursor: not-allowed;
-}
-
 td {
   cursor: pointer;
-}
-
-td.selected {
-  background-color: bisque;
 }
 
 </style>
