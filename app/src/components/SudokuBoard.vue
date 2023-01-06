@@ -18,8 +18,7 @@
             <tbody>
             <tr v-for="(row, idx) in grid" :key="idx">
               <td
-                v-for="(cell, idy) in row"
-                :key="idy"
+                v-for="(cell, idy) in row" :key="idy"
                 @click="setSelected(idx, idy)"
                 :style="[selected[0] == idx && selected[1] == idy ? {'background-color':'#cccccc'} : {}]"
               >
@@ -34,15 +33,9 @@
       <div align="center" style="margin-top: 10px;">
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-secondary" @click="setNumber(0)">Blank</button>
-            <button type="button" class="btn btn-secondary" @click="setNumber(1)">1</button>
-            <button type="button" class="btn btn-secondary" @click="setNumber(2)">2</button>
-            <button type="button" class="btn btn-secondary" @click="setNumber(3)">3</button>
-            <button type="button" class="btn btn-secondary" @click="setNumber(4)">4</button>
-            <button type="button" class="btn btn-secondary" @click="setNumber(5)">5</button>
-            <button type="button" class="btn btn-secondary" @click="setNumber(6)">6</button>
-            <button type="button" class="btn btn-secondary" @click="setNumber(7)">7</button>
-            <button type="button" class="btn btn-secondary" @click="setNumber(8)">8</button>
-            <button type="button" class="btn btn-secondary" @click="setNumber(9)">9</button>
+            <button type="button" class="btn btn-secondary" v-for="number in 9" :key="number" @click="setNumber(number)">
+              {{number}}
+            </button>
           </div>
           <div style="margin-left:25px;display: inline;">
             <button type="button" class="btn btn-outline-success" @click="saveBoardState">Save</button>
