@@ -81,8 +81,7 @@ export default {
     },
     methods : {
         solveBoard(){
-          const path = 'http://localhost:5000/solve';
-          axios.post(path, {data: this.grid})
+          axios.post('http://localhost:5000/solve', {data: this.grid})
           .then ((res) => {
             const result = res.data.solution;
             if(result.length == 0){
@@ -103,8 +102,7 @@ export default {
           })
         },
         randomizeBoard(){
-          const path = 'http://localhost:5000/randomize';
-          axios.get(path)
+          axios.get('http://localhost:5000/randomize')
           .then ((res) => {
             const result = res.data;
             Object.assign(this.$data, {grid: result.puzzle, error: null, success: null});
@@ -114,8 +112,7 @@ export default {
           })
         },
         validateBoard(){
-          const path = 'http://localhost:5000/validate';
-          axios.post(path, {data: this.grid})
+          axios.post('http://localhost:5000/validate', {data: this.grid})
           .then ((res) => {
             const result = res.data;
             if(!result.valid){
