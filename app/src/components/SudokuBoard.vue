@@ -146,11 +146,7 @@ export default {
         }
         ,
         greaterThanZero(cell){
-          if (cell > 0) {
-              return cell.toString();
-          } else {
-              return ""
-          }
+          return cell > 0 ? cell.toString() : ""
         },
         loadBoard(){
           console.log('Resetting board...');
