@@ -168,7 +168,7 @@ export default {
 <style scoped>
 table {
   border-collapse: collapse;
-  border: 2px solid;
+  border: 3px solid;
 }
 
 td {
