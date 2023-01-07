@@ -4,6 +4,7 @@
             <button @click="randomizeBoard" class="btn btn-light">New puzzle</button>
             <button @click="validateBoard" class="btn btn-light">Validate puzzle</button>
             <button @click="solveBoard" class="btn btn-light">Solve puzzle</button>
+            <button @click="lockCells" class="btn btn-light">Lock current cells</button>
       </nav>
 
       <div>
@@ -13,7 +14,7 @@
             <td
               v-for="(cell, idy) in row" :key="idy"
               @click="setSelected(idx, idy)"
-              :style="[locked.includes((idx, idy)) ? {'background-color':'#cccccc'} : {}]"
+              :style="[locked.includes(makeKey(idx, idy)) ? {'background-color':'#cccccc'} : {}]"
             >
               {{ greaterThanZero(grid[idx][idy]) }}
             </td>
@@ -24,7 +25,7 @@
 
       <div style="margin-top: 20px;">
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-secondary" @click="setNumber(0)">Blank</button>
+            <button type="button" class="btn btn-secondary" @click="setNumber(0)">Delete</button>
             <button type="button" class="btn btn-secondary" v-for="number in 9" :key="number" @click="setNumber(number)">
               {{number}}
             </button>
@@ -133,6 +134,11 @@ export default {
         },
         setSelected(x, y) {
           let grid_copy = JSON.parse(JSON.stringify(this.grid))
+          
+          // Do not overwrite locked cells
+          if (this.locked.includes(this.makeKey(x, y))){
+            return
+          }
 
           // Make it possible to revert input by clicking
           if (grid_copy[x][y] == this.chosen_number) {
@@ -164,11 +170,28 @@ export default {
             success: 'Board is saved!'
           })
         },
+        makeKey(x, y){
+          return x.toString() + ',' + y.toString()
+        },
+        lockCells() {
+          if (this.locked.length == 0) {
+            for (var x = 0; x < this.grid.length; x++) {
+              for (var y = 0; y < this.grid.length; y++) {
+                  if (this.grid[x][y] > 0){
+                    this.locked.push(this.makeKey(x, y))
+                  }
+              }
+            }
+          } else {
+            this.locked = []
+          }
+
+        }
     }
 }
 </script>
 
-<style scoped>
+<style>
 table {
   border-collapse: collapse;
   border: 3px solid;
