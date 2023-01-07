@@ -44,11 +44,10 @@
           </div>
       </div>
       <hr><br>
-      <div class="alert alert-danger" v-if="error">
-        {{ error }}
-      </div>
-      <div class="alert alert-success" v-else-if="success">
-        {{ success }}
+
+      <div align="center" style="width: 600px;">
+        <div class="alert alert-dismissible alert-danger" v-if="error">{{ error }}</div>
+        <div class="alert alert-dismissible alert-success" v-else-if="success">{{ success }}</div>
       </div>
     </div>
 </template>
