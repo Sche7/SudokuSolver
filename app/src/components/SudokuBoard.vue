@@ -101,7 +101,7 @@ export default {
             Object.assign(this.$data, resertAlert())
 
             if(result.length == 0){
-              this.fadeAlert({error: 'Solution does not exist.'})
+              this.fadeAlert({error: 'Solution does not exist!'})
             } else {
               this.fadeAlert({
                 grid: result,
@@ -130,7 +130,7 @@ export default {
             const result = res.data
             Object.assign(this.$data, resertAlert())
             if(!result.valid){
-              this.fadeAlert({error: 'Board is invalid.'})
+              this.fadeAlert({error: 'Board is invalid!'})
             } else {
               this.fadeAlert({success: 'Board is valid!'})
             }
@@ -164,7 +164,7 @@ export default {
           Object.assign(this.$data, resertAlert())
           this.fadeAlert({
             saved_grid: this.grid,
-            success: 'Successfully saved board!'
+            success: 'Board is saved!'
           })
         },
     }
