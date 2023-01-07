@@ -4,7 +4,8 @@
             <button @click="randomizeBoard" class="btn btn-light">New puzzle</button>
             <button @click="validateBoard" class="btn btn-light">Validate puzzle</button>
             <button @click="solveBoard" class="btn btn-light">Solve puzzle</button>
-            <button @click="lockCells" class="btn btn-light">Lock current cells</button>
+            <button @click="lockCells" class="btn btn-light" v-if="locked.length==0">Lock cells</button>
+            <button @click="lockCells" class="btn btn-light" v-else>Unlock cells</button>
       </nav>
 
       <div>
