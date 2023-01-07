@@ -99,7 +99,7 @@ export default {
             } else {
               this.fadeAlert({
                 grid: result,
-                success: 'Solution found!'
+                success: 'Solution found!',
               })
             }
           })
@@ -112,7 +112,7 @@ export default {
           .then ((res) => {
             const result = res.data
             Object.assign(this.$data, resertAlert())
-            Object.assign(this.$data, {grid: result.puzzle})
+            Object.assign(this.$data, {grid: result.puzzle, locked: []})
           })
           .catch((err) => {
             console.error(err);
