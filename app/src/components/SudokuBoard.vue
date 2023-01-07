@@ -66,7 +66,14 @@ const initial_grid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ]
+];
+
+function resertAlert(){
+  return {
+    error: null,
+    success: null
+  }
+}
 
 export default {
     name: 'SudokuBoard',
@@ -83,16 +90,16 @@ export default {
         solveBoard(){
           axios.post('http://localhost:5000/solve', {data: this.grid})
           .then ((res) => {
-            const result = res.data.solution;
+            const result = res.data.solution
+            Object.assign(this.$data, resertAlert())
+
             if(result.length == 0){
               Object.assign(this.$data, {
                 error: 'Solution does not exist.',
-                success: null
               })
             } else {
               Object.assign(this.$data, {
                 grid: result,
-                error: null,
                 success: 'Solution found!'
               })
             }
@@ -104,8 +111,9 @@ export default {
         randomizeBoard(){
           axios.get('http://localhost:5000/randomize')
           .then ((res) => {
-            const result = res.data;
-            Object.assign(this.$data, {grid: result.puzzle, error: null, success: null});
+            const result = res.data
+            Object.assign(this.$data, resertAlert())
+            Object.assign(this.$data, {grid: result.puzzle})
           })
           .catch((err) => {
             console.error(err);
@@ -114,15 +122,16 @@ export default {
         validateBoard(){
           axios.post('http://localhost:5000/validate', {data: this.grid})
           .then ((res) => {
-            const result = res.data;
+            const result = res.data
+            Object.assign(this.$data, resertAlert())
             if(!result.valid){
-              Object.assign(this.$data, {error: 'Board is invalid.', success: null})
+              Object.assign(this.$data, {error: 'Board is invalid.'})
             } else {
-              Object.assign(this.$data, {error: null, success: 'Board is valid!'})
+              Object.assign(this.$data, {success: 'Board is valid!'})
             }
           })
           .catch((err) => {
-            console.error(err);
+            console.error(err)
           })
         },
         setSelected(x, y) {
@@ -147,7 +156,7 @@ export default {
           })
           },
         cleanBoard(){
-          console.log('Cleaning board...');
+          console.log('Cleaning board...')
           Object.assign(this.$data, {
             grid:
             initial_grid,
@@ -156,7 +165,7 @@ export default {
           });
         },
         saveBoardState() {
-          console.log('Saving board state...');
+          console.log('Saving board state...')
           Object.assign(this.$data, {
             saved_grid: this.grid,
             success: 'Successfully saved board!',
