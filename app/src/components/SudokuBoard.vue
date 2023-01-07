@@ -1,6 +1,6 @@
 <template>
     <div align="center">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 50%; height: 50px; margin-bottom: 20px;">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 60%; height: 50px; margin-bottom: 20px;">
             <button @click="randomizeBoard" class="btn btn-light">New puzzle</button>
             <button @click="validateBoard" class="btn btn-light">Validate puzzle</button>
             <button @click="solveBoard" class="btn btn-light">Solve puzzle</button>
@@ -13,7 +13,7 @@
             <td
               v-for="(cell, idy) in row" :key="idy"
               @click="setSelected(idx, idy)"
-              :style="[selected[0] == idx && selected[1] == idy ? {'background-color':'#cccccc'} : {}]"
+              :style="[locked.includes((idx, idy)) ? {'background-color':'#cccccc'} : {}]"
             >
               {{ greaterThanZero(grid[idx][idy]) }}
             </td>
@@ -73,7 +73,7 @@ export default {
       return {
         grid: JSON.parse(JSON.stringify(initial_grid)),
         saved_grid: initial_grid,
-        selected: [null, null],
+        locked: [],
         error: null,
         success: null,
         chosen_number: 0
@@ -133,7 +133,14 @@ export default {
         },
         setSelected(x, y) {
           let grid_copy = JSON.parse(JSON.stringify(this.grid))
-          grid_copy[x][y] = this.chosen_number
+
+          // Make it possible to revert input by clicking
+          if (grid_copy[x][y] == this.chosen_number) {
+            grid_copy[x][y] = 0
+          } else {
+            grid_copy[x][y] = this.chosen_number
+          }
+
           Object.assign(this.$data, {grid: grid_copy})
         },
         setNumber(number) {
