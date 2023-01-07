@@ -113,6 +113,7 @@ export default {
             const result = res.data
             Object.assign(this.$data, resertAlert())
             Object.assign(this.$data, {grid: result.puzzle, locked: []})
+            this.lockCells()
           })
           .catch((err) => {
             console.error(err);
@@ -162,7 +163,21 @@ export default {
         },
         cleanBoard(){
           Object.assign(this.$data, resertAlert())
-          Object.assign(this.$data, {grid: initial_grid})
+
+          // Only clean cells that are not locked
+          if (this.locked.length == 0){
+            Object.assign(this.$data, {grid: initial_grid})
+          } else {
+            let grid_copy = JSON.parse(JSON.stringify(this.grid))
+            for (var x = 0; x < this.grid.length; x++) {
+              for (var y = 0; y < this.grid.length; y++) {
+                if (!this.locked.includes(this.makeKey(x, y))){
+                  grid_copy[x][y] = 0
+              }
+            }
+            Object.assign(this.$data, {grid: grid_copy})
+          }
+          }
         },
         saveBoardState() {
           Object.assign(this.$data, resertAlert())
