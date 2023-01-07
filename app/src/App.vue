@@ -8,7 +8,7 @@
       >
       <h1><b>Welcome to Steven's Sudoku Solver</b></h1>
       <hr><br>
-        <SudokuBoard/>
+      <SudokuBoard/>
     </div>
 </template>
 

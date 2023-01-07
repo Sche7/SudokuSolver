@@ -43,9 +43,7 @@
             <button type="button" class="btn btn-outline-secondary" style="margin-left:10px;" @click="cleanBoard" >Clear</button>
           </div>
       </div>
-      <hr><br>
-
-      <div align="center" style="width: 600px;">
+      <div align="center" style="width: 600px;margin-top: 50px;">
         <Transition>
         <div class="alert alert-dismissible alert-danger" v-if="error">{{ error }}</div>
         <div class="alert alert-dismissible alert-success" v-else-if="success">{{ success }}</div>
