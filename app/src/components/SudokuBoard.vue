@@ -147,28 +147,18 @@ export default {
           return cell > 0 ? cell.toString() : ""
         },
         loadBoard(){
-          console.log('Resetting board...');
-          Object.assign(this.$data, {
-            grid: this.saved_grid,
-            error: null, 
-            success: 'Successfully loaded board!'
-          })
-          },
+          Object.assign(this.$data, resertAlert())
+          Object.assign(this.$data, {grid: this.saved_grid})
+        },
         cleanBoard(){
-          console.log('Cleaning board...')
-          Object.assign(this.$data, {
-            grid:
-            initial_grid,
-            error: null,
-            success: 'Successfully cleaned board!'
-          });
+          Object.assign(this.$data, resertAlert())
+          Object.assign(this.$data, {grid: initial_grid});
         },
         saveBoardState() {
-          console.log('Saving board state...')
+          Object.assign(this.$data, resertAlert())
           Object.assign(this.$data, {
             saved_grid: this.grid,
-            success: 'Successfully saved board!',
-            error: null
+            success: 'Successfully saved board!'
           });
         },
     }
