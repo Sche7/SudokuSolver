@@ -46,8 +46,10 @@
       <hr><br>
 
       <div align="center" style="width: 600px;">
+        <Transition>
         <div class="alert alert-dismissible alert-danger" v-if="error">{{ error }}</div>
         <div class="alert alert-dismissible alert-success" v-else-if="success">{{ success }}</div>
+        </Transition>
       </div>
     </div>
 </template>
@@ -86,6 +88,12 @@ export default {
       }
     },
     methods : {
+        fadeAlert(data){
+          Object.assign(this.$data, data)
+          setTimeout(() => {
+            Object.assign(this.$data, resertAlert())
+          }, 3000)
+        },
         solveBoard(){
           axios.post('http://localhost:5000/solve', {data: this.grid})
           .then ((res) => {
@@ -93,11 +101,9 @@ export default {
             Object.assign(this.$data, resertAlert())
 
             if(result.length == 0){
-              Object.assign(this.$data, {
-                error: 'Solution does not exist.',
-              })
+              this.fadeAlert({error: 'Solution does not exist.'})
             } else {
-              Object.assign(this.$data, {
+              this.fadeAlert({
                 grid: result,
                 success: 'Solution found!'
               })
@@ -124,9 +130,9 @@ export default {
             const result = res.data
             Object.assign(this.$data, resertAlert())
             if(!result.valid){
-              Object.assign(this.$data, {error: 'Board is invalid.'})
+              this.fadeAlert({error: 'Board is invalid.'})
             } else {
-              Object.assign(this.$data, {success: 'Board is valid!'})
+              this.fadeAlert({success: 'Board is valid!'})
             }
           })
           .catch((err) => {
@@ -156,10 +162,10 @@ export default {
         },
         saveBoardState() {
           Object.assign(this.$data, resertAlert())
-          Object.assign(this.$data, {
+          this.fadeAlert({
             saved_grid: this.grid,
             success: 'Successfully saved board!'
-          });
+          })
         },
     }
 }
@@ -188,6 +194,14 @@ table tbody tr:nth-child(3), table tbody tr:nth-child(6) {
 
 td {
   cursor: pointer;
+}
+
+.v-leave-active {
+  transition: opacity 1s ease;
+}
+
+.v-enter-from, .v-leave-to {
+  opacity: 0;
 }
 
 </style>
