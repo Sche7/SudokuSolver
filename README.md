@@ -11,7 +11,7 @@ Welcome to my Sudoku solver! This repository includes:
 ## Run application from Docker
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/51048135/211165512-2780ae7e-1250-41a8-a8a4-c87e7d43dab7.gif" width="500"/>
+<img src="https://user-images.githubusercontent.com/51048135/211173611-1fefb46d-5c3a-4edd-842a-e4bc61250860.gif" width="550"/>
 </p>
 
 The sudoku solver has a frontend web application that can easily be setup locally. From the repository folder, run:
