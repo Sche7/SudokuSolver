@@ -5,7 +5,7 @@
             <button @click="validateBoard" class="btn btn-light">Validate puzzle</button>
             <button @click="solveBoard" class="btn btn-light">Solve puzzle</button>
             <button @click="lockCells" class="btn btn-light" v-if="locked.length==0">Lock cells</button>
-            <button @click="lockCells" class="btn btn-light" v-else>Unlock cells</button>
+            <button @click="unlockCells" class="btn btn-light" v-else>Unlock cells</button>
       </nav>
 
       <div>
@@ -175,18 +175,16 @@ export default {
           return x.toString() + ',' + y.toString()
         },
         lockCells() {
-          if (this.locked.length == 0) {
-            for (var x = 0; x < this.grid.length; x++) {
-              for (var y = 0; y < this.grid.length; y++) {
-                  if (this.grid[x][y] > 0){
-                    this.locked.push(this.makeKey(x, y))
-                  }
-              }
+          for (var x = 0; x < this.grid.length; x++) {
+            for (var y = 0; y < this.grid.length; y++) {
+                if (this.grid[x][y] > 0){
+                  this.locked.push(this.makeKey(x, y))
+                }
             }
-          } else {
-            this.locked = []
           }
-
+        },
+        unlockCells(){
+          this.locked = []
         }
     }
 }
