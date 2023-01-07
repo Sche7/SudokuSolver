@@ -1,6 +1,6 @@
 <template>
     <div align="center">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 60%; height: 50px; margin-bottom: 20px;">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 60%; margin-bottom: 20px;">
             <button @click="randomizeBoard" class="btn btn-light">New puzzle</button>
             <button @click="validateBoard" class="btn btn-light">Validate puzzle</button>
             <button @click="solveBoard" class="btn btn-light">Solve puzzle</button>
@@ -160,6 +160,18 @@ export default {
         loadBoard(){
           Object.assign(this.$data, resertAlert())
           Object.assign(this.$data, {grid: this.saved_grid})
+          this.lockCells()
+        },
+        cleanUnlockedCells(grid){
+          let grid_copy = JSON.parse(JSON.stringify(grid))
+          for (var x = 0; x < this.grid.length; x++) {
+            for (var y = 0; y < this.grid.length; y++) {
+              if (!this.locked.includes(this.makeKey(x, y))){
+                grid_copy[x][y] = 0
+              }
+            }
+          }
+          return grid_copy
         },
         cleanBoard(){
           Object.assign(this.$data, resertAlert())
@@ -168,15 +180,7 @@ export default {
           if (this.locked.length == 0){
             Object.assign(this.$data, {grid: initial_grid})
           } else {
-            let grid_copy = JSON.parse(JSON.stringify(this.grid))
-            for (var x = 0; x < this.grid.length; x++) {
-              for (var y = 0; y < this.grid.length; y++) {
-                if (!this.locked.includes(this.makeKey(x, y))){
-                  grid_copy[x][y] = 0
-              }
-            }
-            Object.assign(this.$data, {grid: grid_copy})
-          }
+            Object.assign(this.$data, {grid: this.cleanUnlockedCells(this.grid)})
           }
         },
         saveBoardState() {
