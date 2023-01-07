@@ -25,7 +25,7 @@
 
       <div style="margin-top: 20px;">
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-secondary" @click="setNumber(0)">Delete</button>
+            <button type="button" class="btn btn-secondary" @click="setNumber(0)">Erase</button>
             <button type="button" class="btn btn-secondary" v-for="number in 9" :key="number" @click="setNumber(number)">
               {{number}}
             </button>
