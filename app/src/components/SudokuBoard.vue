@@ -152,7 +152,7 @@ export default {
         },
         cleanBoard(){
           Object.assign(this.$data, resertAlert())
-          Object.assign(this.$data, {grid: initial_grid});
+          Object.assign(this.$data, {grid: initial_grid})
         },
         saveBoardState() {
           Object.assign(this.$data, resertAlert())
