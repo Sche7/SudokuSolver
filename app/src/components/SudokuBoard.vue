@@ -92,7 +92,7 @@ export default {
           Object.assign(this.$data, data)
           setTimeout(() => {
             Object.assign(this.$data, resertAlert())
-          }, 3000)
+          }, 1500)
         },
         solveBoard(){
           axios.post('http://localhost:5000/solve', {data: this.grid})
@@ -197,7 +197,7 @@ td {
 }
 
 .v-leave-active {
-  transition: opacity 1s ease;
+  transition: opacity 0.5s ease;
 }
 
 .v-enter-from, .v-leave-to {
