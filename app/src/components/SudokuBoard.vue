@@ -190,16 +190,18 @@ export default {
           return x.toString() + ',' + y.toString()
         },
         lockCells() {
+          let new_locked = []
           for (var x = 0; x < this.grid.length; x++) {
             for (var y = 0; y < this.grid.length; y++) {
                 if (this.grid[x][y] > 0){
-                  this.locked.push(this.makeKey(x, y))
+                  new_locked.push(this.makeKey(x, y))
                 }
             }
           }
+          Object.assign(this.$data, {locked: new_locked})
         },
         unlockCells(){
-          this.locked = []
+          Object.assign(this.$data, {locked: []})
         }
     }
 }
