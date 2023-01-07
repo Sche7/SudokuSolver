@@ -1,36 +1,28 @@
 <template>
     <div align="center">
-      <div style="display:inline-flex;">
-        <div style="block-size:25px;margin-right: 50px;">
-          <div style="margin-bottom: 10px;margin-top: 10px;">
-            <button @click="randomizeBoard" class="btn btn-primary btn-sm">New puzzle</button>
-          </div>
-          <div style="margin-top: 220px;">
-            <button @click="validateBoard" class="btn btn-warning btn-sm">Validate puzzle</button>
-          </div>
-          <div style="margin-bottom: 10px;margin-top: 10px;">
-            <button @click="solveBoard" class="btn btn-success btn-sm">Solve puzzle</button>
-          </div>
-        </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 50%; height: 50px; margin-bottom: 20px;">
+            <button @click="randomizeBoard" class="btn btn-light">New puzzle</button>
+            <button @click="validateBoard" class="btn btn-light">Validate puzzle</button>
+            <button @click="solveBoard" class="btn btn-light">Solve puzzle</button>
+      </nav>
 
-        <div>
-          <table>
-            <tbody>
-            <tr v-for="(row, idx) in grid" :key="idx">
-              <td
-                v-for="(cell, idy) in row" :key="idy"
-                @click="setSelected(idx, idy)"
-                :style="[selected[0] == idx && selected[1] == idy ? {'background-color':'#cccccc'} : {}]"
-              >
-                {{ greaterThanZero(grid[idx][idy]) }}
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+      <div>
+        <table>
+          <tbody>
+          <tr v-for="(row, idx) in grid" :key="idx">
+            <td
+              v-for="(cell, idy) in row" :key="idy"
+              @click="setSelected(idx, idy)"
+              :style="[selected[0] == idx && selected[1] == idy ? {'background-color':'#cccccc'} : {}]"
+            >
+              {{ greaterThanZero(grid[idx][idy]) }}
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
 
-      <div align="center" style="margin-top: 10px;">
+      <div style="margin-top: 20px;">
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-secondary" @click="setNumber(0)">Blank</button>
             <button type="button" class="btn btn-secondary" v-for="number in 9" :key="number" @click="setNumber(number)">
@@ -38,12 +30,13 @@
             </button>
           </div>
           <div style="margin-left:25px;display: inline;">
-            <button type="button" class="btn btn-outline-success" @click="saveBoardState">Save</button>
-            <button type="button" class="btn btn-outline-info" style="margin-left:10px;" @click="loadBoard">Load</button>
-            <button type="button" class="btn btn-outline-secondary" style="margin-left:10px;" @click="cleanBoard" >Clear</button>
+            <button type="button" class="btn btn-outline-primary" @click="saveBoardState">Save</button>
+            <button type="button" class="btn btn-outline-primary" style="margin-left:10px;" @click="loadBoard">Load</button>
+            <button type="button" class="btn btn-outline-primary" style="margin-left:10px;" @click="cleanBoard" >Clear</button>
           </div>
       </div>
-      <div align="center" style="width: 600px;margin-top: 50px;">
+
+      <div style="width: 600px;margin-top: 50px;">
         <Transition>
         <div class="alert alert-dismissible alert-danger" v-if="error">{{ error }}</div>
         <div class="alert alert-dismissible alert-success" v-else-if="success">{{ success }}</div>
@@ -82,7 +75,8 @@ export default {
         saved_grid: initial_grid,
         selected: [null, null],
         error: null,
-        success: null
+        success: null,
+        chosen_number: 0
       }
     },
     methods : {
@@ -138,14 +132,12 @@ export default {
           })
         },
         setSelected(x, y) {
-          this.selected = [x , y]
+          let grid_copy = JSON.parse(JSON.stringify(this.grid))
+          grid_copy[x][y] = this.chosen_number
+          Object.assign(this.$data, {grid: grid_copy})
         },
         setNumber(number) {
-          const x = this.selected[0]
-          const y = this.selected[1]
-          let grid_copy = JSON.parse(JSON.stringify(this.grid))
-          grid_copy[x][y] = number
-          Object.assign(this.$data, {grid: grid_copy})
+          this.chosen_number = number
         },
         greaterThanZero(cell){
           return cell > 0 ? cell.toString() : ""
@@ -176,18 +168,18 @@ table {
 }
 
 td {
-  border: 1px solid;
+  border: 0.5px solid;
   text-align: center;
   height: 40px;
   width: 40px;
 }
 
 table tbody tr td:nth-child(3), table tbody tr td:nth-child(6) {
-  border-right: 2px solid;
+  border-right: 3px solid;
 }
 
 table tbody tr:nth-child(3), table tbody tr:nth-child(6) {
-  border-bottom: 2px solid;
+  border-bottom: 3px solid;
 }
 
 td {
