@@ -100,7 +100,7 @@ export default {
         computing: null,
         chosen_number: 0,
         idleSpinnerColor: '#2ca444',
-        activeSpinnerColer: '#17a2b8',
+        activeSpinnerColer: '#ff1d5e',
       }
     },
     methods : {
