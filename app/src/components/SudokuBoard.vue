@@ -30,7 +30,7 @@
             <td
               v-for="(cell, idy) in row" :key="idy"
               @click="setSelected(idx, idy)"
-              :style="[locked.includes(makeKey(idx, idy)) ? {'background-color':'#cccccc'} : {}]"
+              :style="[locked.includes(generateKey(idx, idy)) ? {'background-color':'#cccccc'} : {}]"
             >
               {{ greaterThanZero(grid[idx][idy]) }}
             </td>
@@ -161,7 +161,7 @@ export default {
           let gridCopy = JSON.parse(JSON.stringify(this.grid))
           
           // Do not overwrite locked cells
-          if (this.locked.includes(this.makeKey(x, y))){
+          if (this.locked.includes(this.generateKey(x, y))){
             return
           }
 
@@ -192,7 +192,7 @@ export default {
           let gridCopy = JSON.parse(JSON.stringify(grid))
           for (var x = 0; x < this.grid.length; x++) {
             for (var y = 0; y < this.grid.length; y++) {
-              if (!this.locked.includes(this.makeKey(x, y))){
+              if (!this.locked.includes(this.generateKey(x, y))){
                 gridCopy[x][y] = 0
               }
             }
@@ -219,7 +219,7 @@ export default {
             success: 'Board is saved!'
           })
         },
-        makeKey(x, y){
+        generateKey(x, y){
           return x.toString() + ',' + y.toString()
         },
         lockCells() {
@@ -227,7 +227,7 @@ export default {
           for (var x = 0; x < this.grid.length; x++) {
             for (var y = 0; y < this.grid.length; y++) {
                 if (this.grid[x][y] > 0){
-                  newLocked.push(this.makeKey(x, y))
+                  newLocked.push(this.generateKey(x, y))
                 }
             }
           }
