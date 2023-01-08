@@ -74,7 +74,7 @@ const initialGrid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
-function resertAlert(){
+function resetAlert(){
   return {
     error: null,
     success: null,
@@ -105,7 +105,7 @@ export default {
         fadeAlert(data){
           Object.assign(this.$data, data)
           setTimeout(() => {
-            Object.assign(this.$data, resertAlert())
+            Object.assign(this.$data, resetAlert())
           }, 1500)
         },
         solveBoard(){
@@ -113,7 +113,7 @@ export default {
           axios.post('http://localhost:5000/solve', {data: this.grid})
           .then ((res) => {
             const result = res.data.solution
-            Object.assign(this.$data, resertAlert())
+            Object.assign(this.$data, resetAlert())
 
             if(result.length == 0){
               this.fadeAlert({error: 'Solution does not exist!'})
@@ -133,7 +133,7 @@ export default {
           axios.get('http://localhost:5000/randomize')
           .then ((res) => {
             const result = res.data
-            Object.assign(this.$data, resertAlert())
+            Object.assign(this.$data, resetAlert())
             Object.assign(this.$data, {grid: result.puzzle, locked: []})
             this.lockCells()
           })
@@ -146,7 +146,7 @@ export default {
           axios.post('http://localhost:5000/validate', {data: this.grid})
           .then ((res) => {
             const result = res.data
-            Object.assign(this.$data, resertAlert())
+            Object.assign(this.$data, resetAlert())
             if(!result.valid){
               this.fadeAlert({error: 'Board is invalid!'})
             } else {
@@ -181,7 +181,7 @@ export default {
           return cell > 0 ? cell.toString() : ""
         },
         loadBoard(){
-          Object.assign(this.$data, resertAlert())
+          Object.assign(this.$data, resetAlert())
           Object.assign(this.$data, {
             grid: this.savedState.grid,
             locked: this.savedState.locked
@@ -200,7 +200,7 @@ export default {
           return gridCopy
         },
         clearBoard(){
-          Object.assign(this.$data, resertAlert())
+          Object.assign(this.$data, resetAlert())
 
           // Only clean cells that are not locked
           if (this.locked.length == 0){
@@ -210,7 +210,7 @@ export default {
           }
         },
         saveBoardState() {
-          Object.assign(this.$data, resertAlert())
+          Object.assign(this.$data, resetAlert())
           this.fadeAlert({
             savedState: {
               grid: this.grid,
