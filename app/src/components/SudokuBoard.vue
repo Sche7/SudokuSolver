@@ -1,13 +1,28 @@
 <template>
     <div align="center">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 60%; margin-bottom: 20px;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 60%; margin-bottom: 20px;">
             <button @click="randomizeBoard" class="btn btn-light">New puzzle</button>
             <button @click="validateBoard" class="btn btn-light">Validate puzzle</button>
             <button @click="solveBoard" class="btn btn-light">Solve puzzle</button>
             <button @click="lockCells" class="btn btn-light" v-if="locked.length==0">Lock cells</button>
             <button @click="unlockCells" class="btn btn-light" v-else>Unlock cells</button>
-      </nav>
-
+            <ul class="navbar-nav ml-auto">
+              <li><fulfilling-bouncing-circle-spinner
+              :animation-duration="4000"
+              :size="25"
+              :color="activeSpinnerColer"
+              v-if="computing"
+              />
+              <fulfilling-bouncing-circle-spinner
+                :animation-duration="0"
+                :size="25"
+                :color="idleSpinnerColor"
+                v-else
+                />
+              </li>
+            </ul>
+        </nav>
+      
       <div>
         <table>
           <tbody>
@@ -26,20 +41,6 @@
 
       <div style="margin-top: 20px;">
           <div class="btn-group" role="group">
-            <span style="margin-right:25px;margin-top:8px;">
-              <fulfilling-bouncing-circle-spinner
-                :animation-duration="4000"
-                :size="25"
-                :color="activeSpinnerColer"
-                v-if="computing"
-                />
-                <fulfilling-bouncing-circle-spinner
-                :animation-duration="0"
-                :size="25"
-                :color="idleSpinnerColor"
-                v-else
-                />
-            </span>
             <button type="button" class="btn btn-secondary" @click="setNumber(0)">Erase</button>
             <button type="button" class="btn btn-secondary" v-for="number in 9" :key="number" @click="setNumber(number)">
               {{number}}
