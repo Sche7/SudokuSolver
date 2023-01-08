@@ -74,7 +74,7 @@ export default {
     data() {
       return {
         grid: JSON.parse(JSON.stringify(initial_grid)),
-        saved_grid: initial_grid,
+        saved_state: {grid: initial_grid, locked: []},
         locked: [],
         error: null,
         success: null,
@@ -159,8 +159,11 @@ export default {
         },
         loadBoard(){
           Object.assign(this.$data, resertAlert())
-          Object.assign(this.$data, {grid: this.saved_grid})
-          this.lockCells()
+          Object.assign(this.$data, {
+            grid: this.saved_state.grid,
+            locked: this.saved_state.locked
+            }
+          )
         },
         cleanUnlockedCells(grid){
           let grid_copy = JSON.parse(JSON.stringify(grid))
@@ -186,7 +189,10 @@ export default {
         saveBoardState() {
           Object.assign(this.$data, resertAlert())
           this.fadeAlert({
-            saved_grid: this.grid,
+            saved_state: {
+              grid: this.grid,
+              locked: this.locked
+            },
             success: 'Board is saved!'
           })
         },
