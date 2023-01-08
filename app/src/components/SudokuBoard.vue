@@ -192,7 +192,7 @@ export default {
             }
           )
         },
-        cleanUnlockedCells(grid){
+        clearUnlockedCells(grid){
           let gridCopy = createGridCopy(grid)
           for (var x = 0; x < this.grid.length; x++) {
             for (var y = 0; y < this.grid.length; y++) {
@@ -206,11 +206,11 @@ export default {
         clearBoard(){
           Object.assign(this.$data, resetAlert())
 
-          // Only clean cells that are not locked
+          // Only clear cells that are not locked
           if (this.locked.length == 0){
             Object.assign(this.$data, {grid: initialGrid})
           } else {
-            Object.assign(this.$data, {grid: this.cleanUnlockedCells(this.grid)})
+            Object.assign(this.$data, {grid: this.clearUnlockedCells(this.grid)})
           }
         },
         saveBoardState() {
