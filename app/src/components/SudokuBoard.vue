@@ -83,7 +83,7 @@ function resertAlert(){
   return {
     error: null,
     success: null,
-    computing: null,
+    computing: false,
   }
 }
 
@@ -99,7 +99,7 @@ export default {
         locked: [],
         error: null,
         success: null,
-        computing: null,
+        computing: false,
         chosen_number: 0,
         idleSpinnerColor: '#2ca444',
         activeSpinnerColer: '#ff1d5e',
@@ -113,7 +113,7 @@ export default {
           }, 1500)
         },
         solveBoard(){
-          this.computing = "Computing solution ..."
+          this.computing = true
           axios.post('http://localhost:5000/solve', {data: this.grid})
           .then ((res) => {
             const result = res.data.solution
@@ -133,7 +133,7 @@ export default {
           })
         },
         randomizeBoard(){
-          this.computing = "Generarting puzzle ..."
+          this.computing = true
           axios.get('http://localhost:5000/randomize')
           .then ((res) => {
             const result = res.data
@@ -146,7 +146,7 @@ export default {
           })
         },
         validateBoard(){
-          this.computing = "Validating puzzle ..."
+          this.computing = true
           axios.post('http://localhost:5000/validate', {data: this.grid})
           .then ((res) => {
             const result = res.data
