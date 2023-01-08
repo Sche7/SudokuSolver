@@ -82,6 +82,10 @@ function resetAlert(){
   }
 }
 
+function createGridCopy(grid){
+  return JSON.parse(JSON.stringify(grid))
+}
+
 export default {
     name: 'SudokuBoard',
     components: {
@@ -90,7 +94,7 @@ export default {
     },
     data() {
       return {
-        grid: JSON.parse(JSON.stringify(initialGrid)),
+        grid: createGridCopy(initialGrid),
         savedState: {grid: initialGrid, locked: []},
         locked: [],
         error: null,
@@ -158,7 +162,7 @@ export default {
           })
         },
         setSelected(x, y) {
-          let gridCopy = JSON.parse(JSON.stringify(this.grid))
+          let gridCopy = createGridCopy(this.grid)
           
           // Do not overwrite locked cells
           if (this.locked.includes(this.generateKey(x, y))){
@@ -189,7 +193,7 @@ export default {
           )
         },
         cleanUnlockedCells(grid){
-          let gridCopy = JSON.parse(JSON.stringify(grid))
+          let gridCopy = createGridCopy(grid)
           for (var x = 0; x < this.grid.length; x++) {
             for (var y = 0; y < this.grid.length; y++) {
               if (!this.locked.includes(this.generateKey(x, y))){
