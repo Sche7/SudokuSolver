@@ -22,7 +22,7 @@
               </li>
             </ul>
         </nav>
-      
+
       <div>
         <table>
           <tbody>
@@ -53,18 +53,14 @@
           </div>
       </div>
 
-      <div style="width: 600px;margin-top: 50px;">
-        <Transition>
-          <div class="alert alert-dismissible alert-danger" v-if="error">{{ error }}</div>
-          <div class="alert alert-dismissible alert-success" v-else-if="success">{{ success }}</div>
-        </Transition>
-      </div>
+      <AlertBox :error="error" :success="success"/>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import LoadingSpinner from './LoadingSpinner.vue';
+import AlertBox from './AlertBox.vue';
 
 const initial_grid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -89,7 +85,8 @@ function resertAlert(){
 export default {
     name: 'SudokuBoard',
     components: {
-      LoadingSpinner
+      LoadingSpinner,
+      AlertBox
     },
     data() {
       return {
