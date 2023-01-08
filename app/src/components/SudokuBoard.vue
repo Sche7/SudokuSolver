@@ -1,11 +1,21 @@
 <template>
     <div align="center">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 60%; margin-bottom: 20px;">
-            <button @click="randomizeBoard" class="btn btn-light">New puzzle</button>
-            <button @click="validateBoard" class="btn btn-light">Validate puzzle</button>
-            <button @click="solveBoard" class="btn btn-light">Solve puzzle</button>
-            <button @click="lockCells" class="btn btn-light" v-if="locked.length==0">Lock cells</button>
-            <button @click="unlockCells" class="btn btn-light" v-else>Unlock cells</button>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 50%; margin-bottom: 20px;">
+          <ul class="navbar-nav ml-auto text-center">
+            <li>
+              <button @click="randomizeBoard" class="btn btn-light">New puzzle</button>
+            </li>
+            <li>
+              <button @click="validateBoard" class="btn btn-light">Validate puzzle</button>
+            </li>
+            <li>
+              <button @click="solveBoard" class="btn btn-light">Solve puzzle</button>
+            </li>
+            <li>
+              <button @click="lockCells" class="btn btn-light" v-if="locked.length==0">Lock cells</button>
+              <button @click="unlockCells" class="btn btn-light" v-else>Unlock cells</button>
+            </li>
+          </ul>
             <ul class="navbar-nav ml-auto">
               <li>
                 <LoadingSpinner :computing="computing"/>
