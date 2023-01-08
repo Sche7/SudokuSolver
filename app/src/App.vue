@@ -15,6 +15,7 @@
 <script>
 
 import SudokuBoard from './components/SudokuBoard.vue';
+
 export default {
   components: {
     SudokuBoard

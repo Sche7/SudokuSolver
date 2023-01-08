@@ -8,18 +8,7 @@
             <button @click="unlockCells" class="btn btn-light" v-else>Unlock cells</button>
             <ul class="navbar-nav ml-auto">
               <li>
-                <fulfilling-bouncing-circle-spinner
-                    :animation-duration="4000"
-                    :size="25"
-                    :color="activeSpinnerColer"
-                    v-if="computing"
-                />
-                <fulfilling-bouncing-circle-spinner
-                    :animation-duration="0"
-                    :size="25"
-                    :color="idleSpinnerColor"
-                    v-else
-                />
+                <LoadingSpinner :computing="computing"/>
               </li>
             </ul>
         </nav>
@@ -56,8 +45,8 @@
 
       <div style="width: 600px;margin-top: 50px;">
         <Transition>
-        <div class="alert alert-dismissible alert-danger" v-if="error">{{ error }}</div>
-        <div class="alert alert-dismissible alert-success" v-else-if="success">{{ success }}</div>
+          <div class="alert alert-dismissible alert-danger" v-if="error">{{ error }}</div>
+          <div class="alert alert-dismissible alert-success" v-else-if="success">{{ success }}</div>
         </Transition>
       </div>
     </div>
@@ -65,7 +54,7 @@
 
 <script>
 import axios from 'axios';
-import {FulfillingBouncingCircleSpinner} from 'epic-spinners';
+import LoadingSpinner from './LoadingSpinner.vue';
 
 const initial_grid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -90,7 +79,7 @@ function resertAlert(){
 export default {
     name: 'SudokuBoard',
     components: {
-      FulfillingBouncingCircleSpinner
+      LoadingSpinner
     },
     data() {
       return {
