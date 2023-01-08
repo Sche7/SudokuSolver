@@ -49,7 +49,7 @@
           <div style="margin-left:25px;display: inline;">
             <button type="button" class="btn btn-outline-primary" @click="saveBoardState">Save</button>
             <button type="button" class="btn btn-outline-primary" style="margin-left:10px;" @click="loadBoard">Load</button>
-            <button type="button" class="btn btn-outline-primary" style="margin-left:10px;" @click="cleanBoard" >Clear</button>
+            <button type="button" class="btn btn-outline-primary" style="margin-left:10px;" @click="clearBoard" >Clear</button>
           </div>
       </div>
 
@@ -62,7 +62,7 @@ import axios from 'axios';
 import LoadingSpinner from './LoadingSpinner.vue';
 import AlertBox from './AlertBox.vue';
 
-const initial_grid = [
+const initialGrid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -90,13 +90,13 @@ export default {
     },
     data() {
       return {
-        grid: JSON.parse(JSON.stringify(initial_grid)),
-        saved_state: {grid: initial_grid, locked: []},
+        grid: JSON.parse(JSON.stringify(initialGrid)),
+        savedState: {grid: initialGrid, locked: []},
         locked: [],
         error: null,
         success: null,
         computing: false,
-        chosen_number: 0,
+        chosenNumber: 0,
         idleSpinnerColor: '#2ca444',
         activeSpinnerColer: '#ff1d5e',
       }
@@ -158,7 +158,7 @@ export default {
           })
         },
         setSelected(x, y) {
-          let grid_copy = JSON.parse(JSON.stringify(this.grid))
+          let gridCopy = JSON.parse(JSON.stringify(this.grid))
           
           // Do not overwrite locked cells
           if (this.locked.includes(this.makeKey(x, y))){
@@ -166,16 +166,16 @@ export default {
           }
 
           // Make it possible to revert input by clicking
-          if (grid_copy[x][y] == this.chosen_number) {
-            grid_copy[x][y] = 0
+          if (gridCopy[x][y] == this.chosenNumber) {
+            gridCopy[x][y] = 0
           } else {
-            grid_copy[x][y] = this.chosen_number
+            gridCopy[x][y] = this.chosenNumber
           }
 
-          Object.assign(this.$data, {grid: grid_copy})
+          Object.assign(this.$data, {grid: gridCopy})
         },
         setNumber(number) {
-          this.chosen_number = number
+          this.chosenNumber = number
         },
         greaterThanZero(cell){
           return cell > 0 ? cell.toString() : ""
@@ -183,28 +183,28 @@ export default {
         loadBoard(){
           Object.assign(this.$data, resertAlert())
           Object.assign(this.$data, {
-            grid: this.saved_state.grid,
-            locked: this.saved_state.locked
+            grid: this.savedState.grid,
+            locked: this.savedState.locked
             }
           )
         },
         cleanUnlockedCells(grid){
-          let grid_copy = JSON.parse(JSON.stringify(grid))
+          let gridCopy = JSON.parse(JSON.stringify(grid))
           for (var x = 0; x < this.grid.length; x++) {
             for (var y = 0; y < this.grid.length; y++) {
               if (!this.locked.includes(this.makeKey(x, y))){
-                grid_copy[x][y] = 0
+                gridCopy[x][y] = 0
               }
             }
           }
-          return grid_copy
+          return gridCopy
         },
-        cleanBoard(){
+        clearBoard(){
           Object.assign(this.$data, resertAlert())
 
           // Only clean cells that are not locked
           if (this.locked.length == 0){
-            Object.assign(this.$data, {grid: initial_grid})
+            Object.assign(this.$data, {grid: initialGrid})
           } else {
             Object.assign(this.$data, {grid: this.cleanUnlockedCells(this.grid)})
           }
@@ -212,7 +212,7 @@ export default {
         saveBoardState() {
           Object.assign(this.$data, resertAlert())
           this.fadeAlert({
-            saved_state: {
+            savedState: {
               grid: this.grid,
               locked: this.locked
             },
@@ -223,15 +223,15 @@ export default {
           return x.toString() + ',' + y.toString()
         },
         lockCells() {
-          let new_locked = []
+          let newLocked = []
           for (var x = 0; x < this.grid.length; x++) {
             for (var y = 0; y < this.grid.length; y++) {
                 if (this.grid[x][y] > 0){
-                  new_locked.push(this.makeKey(x, y))
+                  newLocked.push(this.makeKey(x, y))
                 }
             }
           }
-          Object.assign(this.$data, {locked: new_locked})
+          Object.assign(this.$data, {locked: newLocked})
         },
         unlockCells(){
           Object.assign(this.$data, {locked: []})
