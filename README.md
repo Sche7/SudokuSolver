@@ -1,3 +1,4 @@
+[![CI/CD](https://github.com/Sche7/SudokuSolver/actions/workflows/build.yml/badge.svg)](https://github.com/Sche7/SudokuSolver/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/Sche7/SudokuSolver/branch/main/graph/badge.svg?token=JCXICBPNVZ)](https://codecov.io/gh/Sche7/SudokuSolver)
 
 
