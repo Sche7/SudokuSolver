@@ -65,7 +65,7 @@
 
 <script>
 import axios from 'axios';
-import {FulfillingBouncingCircleSpinner} from 'epic-spinners'
+import {FulfillingBouncingCircleSpinner} from 'epic-spinners';
 
 const initial_grid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
