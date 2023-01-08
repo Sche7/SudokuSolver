@@ -26,6 +26,20 @@
 
       <div style="margin-top: 20px;">
           <div class="btn-group" role="group">
+            <span style="margin-right:25px;margin-top:8px;">
+              <fulfilling-bouncing-circle-spinner
+                :animation-duration="4000"
+                :size="25"
+                :color="activeSpinnerColer"
+                v-if="computing"
+                />
+                <fulfilling-bouncing-circle-spinner
+                :animation-duration="0"
+                :size="25"
+                :color="idleSpinnerColor"
+                v-else
+                />
+            </span>
             <button type="button" class="btn btn-secondary" @click="setNumber(0)">Erase</button>
             <button type="button" class="btn btn-secondary" v-for="number in 9" :key="number" @click="setNumber(number)">
               {{number}}
@@ -49,6 +63,7 @@
 
 <script>
 import axios from 'axios';
+import {FulfillingBouncingCircleSpinner} from 'epic-spinners'
 
 const initial_grid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -65,12 +80,16 @@ const initial_grid = [
 function resertAlert(){
   return {
     error: null,
-    success: null
+    success: null,
+    computing: null,
   }
 }
 
 export default {
     name: 'SudokuBoard',
+    components: {
+      FulfillingBouncingCircleSpinner
+    },
     data() {
       return {
         grid: JSON.parse(JSON.stringify(initial_grid)),
@@ -78,7 +97,10 @@ export default {
         locked: [],
         error: null,
         success: null,
-        chosen_number: 0
+        computing: null,
+        chosen_number: 0,
+        idleSpinnerColor: '#2ca444',
+        activeSpinnerColer: '#17a2b8',
       }
     },
     methods : {
@@ -89,6 +111,7 @@ export default {
           }, 1500)
         },
         solveBoard(){
+          this.computing = "Computing solution ..."
           axios.post('http://localhost:5000/solve', {data: this.grid})
           .then ((res) => {
             const result = res.data.solution
@@ -108,6 +131,7 @@ export default {
           })
         },
         randomizeBoard(){
+          this.computing = "Generarting puzzle ..."
           axios.get('http://localhost:5000/randomize')
           .then ((res) => {
             const result = res.data
@@ -120,6 +144,7 @@ export default {
           })
         },
         validateBoard(){
+          this.computing = "Validating puzzle ..."
           axios.post('http://localhost:5000/validate', {data: this.grid})
           .then ((res) => {
             const result = res.data
