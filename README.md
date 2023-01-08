@@ -1,3 +1,4 @@
+[![CI/CD](https://github.com/Sche7/SudokuSolver/actions/workflows/build.yml/badge.svg)](https://github.com/Sche7/SudokuSolver/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/Sche7/SudokuSolver/branch/main/graph/badge.svg?token=JCXICBPNVZ)](https://codecov.io/gh/Sche7/SudokuSolver)
 
 
@@ -11,7 +12,7 @@ Welcome to my Sudoku solver! This repository includes:
 ## Run application from Docker
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/51048135/211173611-1fefb46d-5c3a-4edd-842a-e4bc61250860.gif" width="550"/>
+<img src="https://user-images.githubusercontent.com/51048135/211206224-7554e2a1-b882-410d-ab6b-148f5092bf4f.gif" width="550"/>
 </p>
 
 The sudoku solver has a frontend web application that can easily be setup locally. From the repository folder, run:
