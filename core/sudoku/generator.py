@@ -16,9 +16,9 @@ class SudokuLevel(Enum):
     specified by the number of clues in the
     puzzle.
     """
-    EASY = 55
-    MEDIUM = 45
-    HARD = 35
+    EASY = 45
+    MEDIUM = 35
+    HARD = 25
 
 
 @dataclass(frozen=True)
