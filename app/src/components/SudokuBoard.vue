@@ -7,17 +7,18 @@
             <button @click="lockCells" class="btn btn-light" v-if="locked.length==0">Lock cells</button>
             <button @click="unlockCells" class="btn btn-light" v-else>Unlock cells</button>
             <ul class="navbar-nav ml-auto">
-              <li><fulfilling-bouncing-circle-spinner
-              :animation-duration="4000"
-              :size="25"
-              :color="activeSpinnerColer"
-              v-if="computing"
-              />
-              <fulfilling-bouncing-circle-spinner
-                :animation-duration="0"
-                :size="25"
-                :color="idleSpinnerColor"
-                v-else
+              <li>
+                <fulfilling-bouncing-circle-spinner
+                    :animation-duration="4000"
+                    :size="25"
+                    :color="activeSpinnerColer"
+                    v-if="computing"
+                />
+                <fulfilling-bouncing-circle-spinner
+                    :animation-duration="0"
+                    :size="25"
+                    :color="idleSpinnerColor"
+                    v-else
                 />
               </li>
             </ul>
