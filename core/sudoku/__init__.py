@@ -3,4 +3,4 @@ from sudoku.validator import SudokuValidator
 from sudoku.generator import SudokuGenerator
 
 
-__all__ = ['SudokuSolver', 'SudokuValidator', 'SudokuGenerator']
+__all__ = ["SudokuSolver", "SudokuValidator", "SudokuGenerator"]

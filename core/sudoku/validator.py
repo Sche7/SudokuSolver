@@ -75,7 +75,7 @@ class SudokuValidator:
         indices = [0, 3, 6]
         for i in indices:
             for j in indices:
-                subgrid = board[i:(i+3), j:(j+3)]
+                subgrid = board[i : (i + 3), j : (j + 3)]
                 filtered_subgrid = cls._filter_off_zeros(subgrid.flatten())
                 if cls.has_repeated_number(filtered_subgrid):
                     return False
@@ -84,9 +84,9 @@ class SudokuValidator:
     @classmethod
     def is_valid(cls, board: NDArray) -> bool:
         return (
-            cls.rows_are_valid(board) and
-            cls.columns_are_valid(board) and
-            cls.subgrids_are_valid(board)
+            cls.rows_are_valid(board)
+            and cls.columns_are_valid(board)
+            and cls.subgrids_are_valid(board)
         )
 
     @classmethod
@@ -105,12 +105,7 @@ class SudokuValidator:
         return 0 not in board
 
     @classmethod
-    def value_is_valid(
-        cls,
-        board: NDArray,
-        node: tuple,
-        node_value: int
-    ) -> bool:
+    def value_is_valid(cls, board: NDArray, node: tuple, node_value: int) -> bool:
         """
         Method to 'foresee' whether node_value will result in
         a valid board or not.

@@ -19,6 +19,7 @@ def run_script(*args):
 
 def main():
     import sys
+
     args = sys.argv[1:]
     run_script(*args)
 

@@ -23,7 +23,7 @@ class SudokuSolver:
         board: NDArray,
         node: tuple = (0, 0),
         pbar: Optional[tqdm] = None,
-        randomize: Optional[bool] = False
+        randomize: Optional[bool] = False,
     ) -> Union[None, NDArray]:
         """
         Method for solving a sudoku board.
@@ -50,20 +50,13 @@ class SudokuSolver:
         # before going to next child node
         if board[node] != 0:
             return self.solve_sudoku(
-                    board=board,
-                    node=get_child(node),
-                    pbar=pbar,
-                    randomize=randomize
+                board=board, node=get_child(node), pbar=pbar, randomize=randomize
             )
         else:
             for i in board_numbers:
                 # if value 'i' is valid then proceed with value 'i'
                 # else try next incremented value
-                if SudokuValidator.value_is_valid(
-                    board=board,
-                    node=node,
-                    node_value=i
-                ):
+                if SudokuValidator.value_is_valid(board=board, node=node, node_value=i):
                     board[node] = i
 
                     # Proceed further with valid value
@@ -72,7 +65,7 @@ class SudokuSolver:
                         board=board,
                         node=get_child(node),
                         pbar=pbar,
-                        randomize=randomize
+                        randomize=randomize,
                     )
                     if result is not None:
                         return result
@@ -92,7 +85,7 @@ class SudokuSolver:
         output = []
         with open(input_file) as f:
             for line in f:
-                output.append(line.strip('\n').split(' '))
+                output.append(line.strip("\n").split(" "))
 
         board = np.array(output, dtype=int)
         return cls(board=board, input_file=input_file)
@@ -117,14 +110,8 @@ class SudokuSolver:
         >>> solver = SudokuSolver(board=board)
         >>> solver.run()
         """
-        input_file = f' for {self.input_file}' if self.input_file else ''
-        pbar = tqdm(
-            ncols=0,
-            desc=f'Computing solution{input_file}',
-            leave=False
-        )
+        input_file = f" for {self.input_file}" if self.input_file else ""
+        pbar = tqdm(ncols=0, desc=f"Computing solution{input_file}", leave=False)
         return self.solve_sudoku(
-            board=self.original_board,
-            pbar=pbar,
-            randomize=randomize
+            board=self.original_board, pbar=pbar, randomize=randomize
         )

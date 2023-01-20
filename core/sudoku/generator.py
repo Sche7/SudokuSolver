@@ -16,6 +16,7 @@ class SudokuLevel(Enum):
     specified by the number of clues in the
     puzzle.
     """
+
     EASY = 45
     MEDIUM = 35
     HARD = 25
@@ -43,17 +44,11 @@ class SudokuGenerator:
         """
         nrows, ncols = board.shape
         result = [
-            (x, y) for x in range(0, nrows)
-            for y in range(0, ncols)
-            if board[x, y] > 0
+            (x, y) for x in range(0, nrows) for y in range(0, ncols) if board[x, y] > 0
         ]
         return result
 
-    def get_number_of_solutions(
-        self,
-        board: NDArray,
-        node: tuple = (0, 0)
-    ) -> int:
+    def get_number_of_solutions(self, board: NDArray, node: tuple = (0, 0)) -> int:
         """
         Method for counting number of solutions of a sudoku board.
 
@@ -77,8 +72,8 @@ class SudokuGenerator:
             # before going to next child node
             if board[node] != 0:
                 return _exhaustive_search(
-                        board=board,
-                        node=get_child(node),
+                    board=board,
+                    node=get_child(node),
                 )
             else:
 
@@ -89,9 +84,7 @@ class SudokuGenerator:
                     # if value 'i' is valid then proceed with value 'i'
                     # else try next incremented value
                     if SudokuValidator.value_is_valid(
-                        board=board,
-                        node=node,
-                        node_value=i
+                        board=board, node=node, node_value=i
                     ):
                         board[node] = i
 
@@ -105,6 +98,7 @@ class SudokuGenerator:
                     # reset cell to 0 for next increment of 'i'
                     board[node] = 0
             return
+
         _ = _exhaustive_search(board=board, node=node)
         return count
 
@@ -148,8 +142,7 @@ class SudokuGenerator:
         return puzzle
 
     def generate_sudoku_puzzle(
-        self,
-        difficulty: Optional[SudokuLevel] = SudokuLevel.EASY
+        self, difficulty: Optional[SudokuLevel] = SudokuLevel.EASY
     ) -> SudokuPuzzle:
         """
         Generate Sudoku puzzle that has one unique solution.
@@ -167,10 +160,7 @@ class SudokuGenerator:
         sudoku_solver = SudokuSolver(board=board)
 
         # Generate randomized complete sudoku board
-        complete_board = sudoku_solver.solve_sudoku(
-            board=board,
-            randomize=True
-        )
+        complete_board = sudoku_solver.solve_sudoku(board=board, randomize=True)
 
         # Generate puzzle by removing values in cells,
         # while also keeping track on the number of solutions.

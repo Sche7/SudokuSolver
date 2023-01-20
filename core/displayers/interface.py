@@ -3,7 +3,8 @@ from nptyping import NDArray
 
 
 class DisplayInterface(ABC):
-    """ Interface for displayers """
+    """Interface for displayers"""
+
     @abstractmethod
     def display(self, board: NDArray):
         """

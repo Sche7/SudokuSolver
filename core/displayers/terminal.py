@@ -22,12 +22,10 @@ class TerminalDisplayer(DisplayInterface):
         divider()
 
         # Other rows
-        for i in range(grid_size-1, -1, -1):
+        for i in range(grid_size - 1, -1, -1):
             for j in range(grid_size):
-                output.append(
-                    f"| {flipped_board[i, j]} "
-                )
-            output.append('| \n')
+                output.append(f"| {flipped_board[i, j]} ")
+            output.append("| \n")
             divider()
         print("".join(output), flush=True)
 

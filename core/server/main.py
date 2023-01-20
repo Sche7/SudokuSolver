@@ -16,11 +16,15 @@ def create_app():
     app.config.from_object(__name__)
 
     # Enable Cross origin resource sharing
-    CORS(app, resource={r"/*": {
-        'origins': "http://*:8080",  # default port for vue
-        "allow_headers": "Access-Control-Allow-Origin"
-        }
-    })
+    CORS(
+        app,
+        resource={
+            r"/*": {
+                "origins": "http://*:8080",  # default port for vue
+                "allow_headers": "Access-Control-Allow-Origin",
+            }
+        },
+    )
 
     @app.route("/", methods=["GET"])
     def greetings():
@@ -29,7 +33,7 @@ def create_app():
     @app.route("/solve", methods=["POST"])
     def solve():
         # Fetch request data
-        data = json.loads(request.data).get('data')
+        data = json.loads(request.data).get("data")
 
         # Run solver
         solver = SudokuSolver(board=np.array(data))
@@ -48,15 +52,12 @@ def create_app():
         sudoku_generator = SudokuGenerator()
         output = sudoku_generator.generate_sudoku_puzzle(SudokuLevel.MEDIUM)
 
-        return jsonify(
-            puzzle=output.puzzle.tolist(),
-            solution=output.solution.tolist()
-        )
+        return jsonify(puzzle=output.puzzle.tolist(), solution=output.solution.tolist())
 
     @app.route("/validate", methods=["POST"])
     def validate():
         # Fetch request data
-        data = json.loads(request.data).get('data')
+        data = json.loads(request.data).get("data")
 
         # Run validation
         valid = SudokuValidator.is_valid(board=np.array(data))
@@ -69,7 +70,7 @@ def create_app():
 if __name__ == "__main__":
     app = create_app()
     app.run(
-        host='0.0.0.0',
+        host="0.0.0.0",
         port=5000,
         debug=True,
     )
