@@ -12,6 +12,7 @@ from opentelemetry.instrumentation.flask import FlaskInstrumentor
 def create_app():
     # Instantiate flask application
     app = Flask(__name__)
+    FlaskInstrumentor().instrument_app(app)
 
     # Update application constantly
     app.config.from_object(__name__)
@@ -70,7 +71,6 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    FlaskInstrumentor().instrument_app(app)
     app.run(
         host="0.0.0.0",
         port=5000,
