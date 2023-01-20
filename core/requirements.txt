@@ -8,3 +8,4 @@ tqdm
 flask
 flask-cors
 black
+opentelemetry-instrumentation-flask
