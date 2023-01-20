@@ -6,6 +6,7 @@ from flask_cors import CORS
 from sudoku.solver import SudokuSolver
 from sudoku.validator import SudokuValidator
 from sudoku.generator import SudokuGenerator, SudokuLevel
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
 
 
 def create_app():
@@ -69,6 +70,7 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
+    FlaskInstrumentor().instrument_app(app)
     app.run(
         host="0.0.0.0",
         port=5000,
