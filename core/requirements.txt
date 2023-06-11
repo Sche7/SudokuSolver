@@ -1,11 +1,6 @@
 numpy
-ipython
-pytest
-pytest-cov
-coverage
 nptyping
 tqdm
 flask
 flask-cors
-black
 opentelemetry-instrumentation-flask

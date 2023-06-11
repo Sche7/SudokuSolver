@@ -45,7 +45,7 @@ def test_displayer(capsys):
     ]
     displayer = TerminalDisplayer()
     displayer.display(data)
-    captured = capsys.readouterr()
-    splitted_lines = captured.out.strip("\n").splitlines()
+    captured: str = capsys.readouterr().out
+    splitted_lines = captured.strip("\n").splitlines()
 
     assert expected == splitted_lines
