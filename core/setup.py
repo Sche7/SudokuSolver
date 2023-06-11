@@ -11,6 +11,6 @@ setup(
     packages=["sudoku", "server", "displayers"],
     entry_points="""
         [console_scripts]
-        solve=run:main
+        solve=sudoku.run:main
       """,
 )
