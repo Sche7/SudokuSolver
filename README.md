@@ -24,17 +24,11 @@ Note that, it is required to have `Docker` installed on your computer. When succ
 ## Installation in Python
 In the repository folder, run:<br>
 ```bash
-cd core/
-make setup
+cd core/ && make setup
 ```
-
-To see that everything has been installed correctly, run from the root of the repository:<br>
-```bash
-pytest core/tests/
-```
-You should see that all tests passes.
 
 ### Running SudokuSolver from terminal
+
 In the terminal, simply use the command <code>solve</code> followed by an input filepath. Note that the input file must have .txt format with whitespace as separator. For example: <br>
 ```
 0 0 9 0 0 0 4 6 3
@@ -58,9 +52,14 @@ solve core/boards/board_1.txt core/boards/board_2.txt core/boards/board_3.txt
 ```
 
 ### Running SudokuSolver from Python-interactives
+
 #### Example 1
+
 In any Python interactives, simply execute the following command:<br>
 ```python
+import numpy as np
+from sudoku.solver import SudokuSolver
+
 board = np.array(
     [[0, 0, 9, 0, 0, 0, 4, 6, 3],
     [0, 0, 6, 3, 4, 0, 5, 2, 9],
@@ -74,9 +73,13 @@ board = np.array(
 solver = SudokuSolver(board=board)
 solver.run()
 ```
+
 #### Example 2
+
 If it is desired to load the Sudoku board from a .txt-file use:<br>
 ```python
+from sudoku.solver import SudokuSolver
+
 solver = SudokuSolver.from_txt('core/boards/board_1.txt')
 solver.run()
 ```
