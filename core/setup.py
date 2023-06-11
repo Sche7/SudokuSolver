@@ -8,7 +8,7 @@ setup(
     author_email="stevencheung7@outlook.dk",
     description="A library that can solve any sudoku board",
     py_modules=["core"],
-    packages=["displayers", "tests"],
+    packages=["sudoku", "server", "displayers"],
     entry_points="""
         [console_scripts]
         solve=run:main
