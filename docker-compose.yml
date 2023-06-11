@@ -21,8 +21,6 @@ services:
       - 8080:8080
     networks:
       - sudoku
-#    volumes:
-#      - ./app/app:/sudoku_solver/app
 
 networks:
   sudoku:
