@@ -4,3 +4,4 @@ tqdm
 flask
 flask-cors
 opentelemetry-instrumentation-flask
+maturin
