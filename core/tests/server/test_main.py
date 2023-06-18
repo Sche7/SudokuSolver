@@ -5,8 +5,8 @@ import pytest
 from flask import Flask, Response
 
 from server.main import create_app
-from sudoku.generator import SudokuPuzzle
 from sudoku.validator import SudokuValidator
+from sudoku.generator import SudokuPuzzle
 
 
 @pytest.fixture
