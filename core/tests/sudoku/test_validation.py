@@ -1,4 +1,5 @@
 import numpy as np
+
 from sudoku.validator import SudokuValidator
 
 

@@ -1,4 +1,5 @@
 from typing import Union
+
 from nptyping import NDArray
 
 

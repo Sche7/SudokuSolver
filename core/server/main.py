@@ -1,12 +1,13 @@
 import json
-import numpy as np
 
-from flask import Flask, request, jsonify
+import numpy as np
+from flask import Flask, jsonify, request
 from flask_cors import CORS
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+
+from sudoku.generator import SudokuGenerator, SudokuLevel
 from sudoku.solver import SudokuSolver
 from sudoku.validator import SudokuValidator
-from sudoku.generator import SudokuGenerator, SudokuLevel
-from opentelemetry.instrumentation.flask import FlaskInstrumentor
 
 
 def create_app():

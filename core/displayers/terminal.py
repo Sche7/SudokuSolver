@@ -1,6 +1,7 @@
 import numpy as np
-from displayers.interface import DisplayInterface
 from nptyping import NDArray
+
+from displayers.interface import DisplayInterface
 
 
 class TerminalDisplayer(DisplayInterface):
