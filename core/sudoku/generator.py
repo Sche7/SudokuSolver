@@ -1,13 +1,13 @@
-import numpy as np
-
-from typing import Optional, List
-from nptyping import NDArray
 from dataclasses import dataclass
 from enum import Enum
 from random import shuffle
+from typing import List, Optional
 
-from sudoku.utils import get_child
+import numpy as np
+from nptyping import NDArray
+
 from sudoku import SudokuSolver, SudokuValidator
+from sudoku.utils import get_child
 
 
 class SudokuLevel(Enum):

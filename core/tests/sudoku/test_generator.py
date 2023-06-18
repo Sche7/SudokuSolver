@@ -1,5 +1,6 @@
-import pytest
 import numpy as np
+import pytest
+
 from sudoku.generator import SudokuGenerator
 from sudoku.solver import SudokuSolver
 

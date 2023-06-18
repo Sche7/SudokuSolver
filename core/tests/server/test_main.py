@@ -1,8 +1,9 @@
-import pytest
-import numpy as np
 import json
 
+import numpy as np
+import pytest
 from flask import Flask, Response
+
 from server.main import create_app
 from sudoku.generator import SudokuPuzzle
 from sudoku.validator import SudokuValidator

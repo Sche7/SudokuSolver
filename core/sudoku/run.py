@@ -1,5 +1,5 @@
-from sudoku.solver import SudokuSolver
 from displayers.terminal import TerminalDisplayer
+from sudoku.solver import SudokuSolver
 
 
 def run_script(*args):

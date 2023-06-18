@@ -1,6 +1,5 @@
 from setuptools import setup
 
-
 setup(
     name="Sudoku",
     version="1.0",
