@@ -10,6 +10,7 @@ from sudoku.utils import get_child
 from sudoku.validator import SudokuValidator
 from sudoku.solver import SudokuSolver
 
+
 class SudokuLevel(Enum):
     """
     Difficulty of a Sudoku puzzle is
