@@ -6,9 +6,9 @@ from typing import List, Optional
 import numpy as np
 from nptyping import NDArray
 
-from sudoku.validator import SudokuValidator
 from sudoku.solver import SudokuSolver
 from sudoku.utils import get_child
+from sudoku.validator import SudokuValidator
 
 
 class SudokuLevel(Enum):
