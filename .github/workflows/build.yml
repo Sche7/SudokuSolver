@@ -37,6 +37,10 @@ jobs:
         working-directory: ./core
         run: |
           ruff check .
+      - name: Check Black formatting
+        working-directory: ./core
+        run: |
+          black --check .
       - name: Test with pytest
         working-directory: ./core
         run: |
