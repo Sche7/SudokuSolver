@@ -1,9 +1,9 @@
-import numpy as np
+from random import shuffle
+from typing import Optional, Union
 
-from typing import Union, Optional
+import numpy as np
 from nptyping import NDArray
 from tqdm import tqdm
-from random import shuffle
 
 from sudoku.utils import get_child
 from sudoku.validator import SudokuValidator
