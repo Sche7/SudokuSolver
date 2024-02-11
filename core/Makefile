@@ -1,12 +1,8 @@
 setup:
-	pip install -U pip setuptools
-	pip install -r requirements.txt
-	pip install .
+	poetry install
 
 setup-dev:
-	pip install -U pip setuptools
-	pip install -r requirements.txt -r dev_requirements.txt
-	pip install -e .
+	poetry install --with dev
 
 test:
 	python -m pytest tests/
