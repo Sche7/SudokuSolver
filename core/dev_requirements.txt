@@ -1,7 +1,0 @@
-ipython
-pytest
-pytest-cov
-coverage
-black
-flake8
-ruff

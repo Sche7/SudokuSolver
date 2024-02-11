@@ -4,9 +4,10 @@ FROM python:3.9.15
 WORKDIR /sudoku_solver/core
 
 # Install dependencies
-COPY ./core/requirements.txt .
+COPY ./core/pyproject.toml .
+COPY ./core/poetry.lock .
 RUN pip install --no-cache-dir --upgrade pip setuptools && \
-    pip install --no-cache-dir --upgrade -r requirements.txt
+    pip install --no-cache-dir pyproject.toml
 
 # Copy backend
 COPY ./core ./
