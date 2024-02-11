@@ -42,7 +42,7 @@ jobs:
       - name: Lint with Ruff
         working-directory: ./core
         run: |
-          poety run ruff check .
+          poetry run ruff check .
 
       - name: Check Black formatting
         working-directory: ./core
