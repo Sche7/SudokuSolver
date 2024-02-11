@@ -1,6 +1,0 @@
-numpy
-nptyping
-tqdm
-flask
-flask-cors
-opentelemetry-instrumentation-flask
