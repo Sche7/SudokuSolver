@@ -5,4 +5,4 @@ setup-dev:
 	poetry install --with dev
 
 test:
-	python -m pytest tests/
+	poetry run python -m pytest tests/
