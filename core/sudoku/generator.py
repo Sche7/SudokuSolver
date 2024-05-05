@@ -9,6 +9,7 @@ from nptyping import NDArray
 from sudoku.solver import SudokuSolver
 from sudoku.utils import get_child
 from sudoku.validator import SudokuValidator
+from common.classes import SudokuPuzzle
 
 
 class SudokuLevel(Enum):
@@ -21,12 +22,6 @@ class SudokuLevel(Enum):
     EASY = 45
     MEDIUM = 35
     HARD = 25
-
-
-@dataclass(frozen=True)
-class SudokuPuzzle:
-    solution: NDArray
-    puzzle: NDArray
 
 
 class SudokuGenerator:
