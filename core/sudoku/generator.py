@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from enum import Enum
 from random import shuffle
 from typing import List, Optional
@@ -6,6 +5,7 @@ from typing import List, Optional
 import numpy as np
 from nptyping import NDArray
 
+from common.classes import SudokuPuzzle
 from sudoku.solver import SudokuSolver
 from sudoku.utils import get_child
 from sudoku.validator import SudokuValidator
@@ -21,12 +21,6 @@ class SudokuLevel(Enum):
     EASY = 45
     MEDIUM = 35
     HARD = 25
-
-
-@dataclass(frozen=True)
-class SudokuPuzzle:
-    solution: NDArray
-    puzzle: NDArray
 
 
 class SudokuGenerator:
