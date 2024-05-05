@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from enum import Enum
 from random import shuffle
 from typing import List, Optional
@@ -6,10 +5,10 @@ from typing import List, Optional
 import numpy as np
 from nptyping import NDArray
 
+from common.classes import SudokuPuzzle
 from sudoku.solver import SudokuSolver
 from sudoku.utils import get_child
 from sudoku.validator import SudokuValidator
-from common.classes import SudokuPuzzle
 
 
 class SudokuLevel(Enum):
