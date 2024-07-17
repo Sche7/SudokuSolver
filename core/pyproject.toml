@@ -17,7 +17,7 @@ flask = "^3.0.2"
 flask-cors = "^4.0.1"
 opentelemetry-instrumentation-flask = "^0.43b0"
 maturin = "^1.4.0"
-requests = "^2.31.0"
+requests = "^2.32.2"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.0.0"
