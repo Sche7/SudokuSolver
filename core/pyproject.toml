@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sudoku"
-version = "1.0.1"
+version = "1.0.2"
 description = "A library that can solve any sudoku board"
 authors = ["Steven <stevencheung7@outlook.dk>"]
 readme = "README.md"
@@ -9,22 +9,22 @@ readme = "README.md"
 solve = "sudoku.run:main"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 numpy = "^1.26.4"
 nptyping = "^2.5.0"
 tdqm = "^0.0.1"
 flask = "^3.0.2"
-flask-cors = "^4.0.0"
+flask-cors = "^4.0.1"
 opentelemetry-instrumentation-flask = "^0.43b0"
 maturin = "^1.4.0"
-requests = "^2.31.0"
+requests = "^2.32.2"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.0.0"
 pytest = "^8.0.0"
 pytest-cov = "^4.1.0"
 coverage = "^7.4.1"
-black = "^24.1.1"
+black = "^24.3.0"
 flake8 = "^7.0.0"
 ruff = "^0.2.1"
 
