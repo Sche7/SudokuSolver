@@ -9,7 +9,7 @@ readme = "README.md"
 solve = "sudoku.run:main"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.10,<4.0"
 numpy = "^1.26.4"
 nptyping = "^2.5.0"
 tdqm = "^0.0.1"
