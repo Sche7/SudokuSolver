@@ -1,0 +1,32 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/base:1.2.0-ubuntu-24.04",
+    "features": {
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.12",
+            "installTools": "true"
+        },
+        "ghcr.io/devcontainers/features/docker-in-docker:1": {},
+        "ghcr.io/devcontainers/features/commmon-utils:2": {},
+        "ghcr.io/devcontainers/features/act:1": {},
+        "ghcr.io/devcontainers/features/pre-commit:2": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "hhashicorp.terraform",
+                "charliermarsh.ruff",
+                "elagil.pre-commit-helper",
+                "ms-pyright.pyright",
+                "ms-python.debugpy"
+            ],
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash",
+                "python.pythonPath": "/usr/bin/python3"
+            }
+        }
+    },
+    "postCreateCommand": "chmod +x ./.devcontainer/post-create.sh && ./.devcontainer/post-create.sh",
+    "mounts": [
+        "type=bind,source=${locaclEnv:HOME}/.ssh,target=/home/vscode/ssh,consistency=cached,readonly"
+    ]
+}
