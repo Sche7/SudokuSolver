@@ -25,6 +25,6 @@
     },
     "postCreateCommand": "chmod +x ./.devcontainer/post-create.sh && ./.devcontainer/post-create.sh",
     "mounts": [
-        "type=bind,source=${localEnv:HOME}/.ssh,target=/home/vscode/ssh,consistency=cached,readonly"
+        "type=bind,source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,consistency=cached,readonly"
     ]
 }

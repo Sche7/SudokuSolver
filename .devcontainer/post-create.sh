@@ -9,7 +9,7 @@ curl -sSL https://install.python-poetry.org | python3 -;
 make install-core;
 
 # Install Node.js and npm
-sudo apt install nodejs -y && sudo apt install npm -y;
+sudo apt install -y nodejs && sudo apt install -y npm;
 
 # Install Node.js dependencies
 make install-app;
