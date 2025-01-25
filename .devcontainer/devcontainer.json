@@ -4,11 +4,7 @@
         "ghcr.io/devcontainers/features/python:1": {
             "version": "3.12",
             "installTools": "true"
-        },
-        "ghcr.io/devcontainers/features/docker-in-docker:1": {},
-        "ghcr.io/devcontainers/features/commmon-utils:2": {},
-        "ghcr.io/devcontainers/features/act:1": {},
-        "ghcr.io/devcontainers/features/pre-commit:2": {}
+        }
     },
     "customizations": {
         "vscode": {
@@ -17,7 +13,9 @@
                 "charliermarsh.ruff",
                 "elagil.pre-commit-helper",
                 "ms-pyright.pyright",
-                "ms-python.debugpy"
+                "ms-python.debugpy",
+                "github.copilot",
+                "ms-azuretools.vscode-docker"
             ],
             "settings": {
                 "terminal.integrated.shell.linux": "/bin/bash",
@@ -27,6 +25,6 @@
     },
     "postCreateCommand": "chmod +x ./.devcontainer/post-create.sh && ./.devcontainer/post-create.sh",
     "mounts": [
-        "type=bind,source=${locaclEnv:HOME}/.ssh,target=/home/vscode/ssh,consistency=cached,readonly"
+        "type=bind,source=${localEnv:HOME}/.ssh,target=/home/vscode/ssh,consistency=cached,readonly"
     ]
 }

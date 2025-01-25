@@ -15,3 +15,9 @@ run-docker-frontend:
 
 compose-docker:
 	docker-compose up --build -d
+
+install-core:
+	cd core && poetry install --with dev
+
+install-app:
+	cd app && npm install;
