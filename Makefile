@@ -15,3 +15,7 @@ run-docker-frontend:
 
 compose-docker:
 	docker-compose up --build -d
+
+install-az-cli:
+	curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+	
