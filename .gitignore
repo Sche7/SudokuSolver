@@ -7,3 +7,13 @@ tmp
 build/
 **/node_modules
 .coverage
+
+
+# Terraform
+*.terraform
+.terraform/
+.terraform.lock.hcl
+.terraform.tfstate.lock.info
+*.tfstate
+*.tfstate.backup
+*.tfvars
