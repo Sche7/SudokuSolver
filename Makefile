@@ -18,4 +18,3 @@ compose-docker:
 
 install-az-cli:
 	curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-	
